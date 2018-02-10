@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 873b8b0ec4d044049ae67cb35a8e6add
+timeCreated: 1497467367
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - canvasTransform: {instanceID: 0}
+  - WinBox: {fileID: 1489635057788840, guid: c7bbf274fdc3a3a44bf25decafa00a98, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
