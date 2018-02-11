@@ -206,13 +206,26 @@ public class BoardManager : MonoBehaviour
         activeChessman = new List<GameObject>();
         Chessmans = new Chessman[5,8];
 
-        spawnChessman (0,2,1);
+        switch (Datebase.instance.sceneLevel)
+        {
+            case 0 :
+                spawnChessman(0, 2, 1);
 
-        spawnChessman (1,2,4);
+                spawnChessman(1, 2, 4);
 
-        spawnChessman (2,1,0);
+                spawnChessman(2, 1, 0);
 
-        spawnChessman (1,4,6);
+                spawnChessman(1, 4, 6);
+                break;
+
+            case 1:
+                spawnChessman(0, 2, 1);
+
+                spawnChessman(1, 2, 4);
+
+                spawnChessman(2, 1, 0);
+                break;
+        }
     }
 
     public Vector3 getTileCenter(int x,int y) //捉取格子的中心
