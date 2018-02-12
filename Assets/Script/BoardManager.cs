@@ -222,8 +222,6 @@ public class BoardManager : MonoBehaviour
                 spawnChessman(0, 2, 1);
 
                 spawnChessman(1, 2, 4);
-
-                spawnChessman(2, 1, 0);
                 break;
         }
     }
@@ -298,4 +296,6 @@ public class BoardManager : MonoBehaviour
                 Vector3.forward * selectionY + Vector3.right * (selectionX + 1));
         }
     } //繪製棋盤
+
+    
 }
