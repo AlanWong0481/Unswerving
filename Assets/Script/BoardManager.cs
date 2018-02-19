@@ -130,7 +130,7 @@ public class BoardManager : MonoBehaviour
         Chessmans[ x, y ] = chessmans; //安排Chessmans去array裡新的位置
     } //通用移動
 
-    public void moveChessman(int x,int y) //選擇棋子移動
+    public void moveChessman(int x,int y) //棋子移動
     {
         if (allowedMoves[x,y])
         {
