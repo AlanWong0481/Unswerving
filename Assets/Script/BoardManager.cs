@@ -31,6 +31,8 @@ public class BoardManager : MonoBehaviour
 
     private Quaternion orientation = Quaternion.Euler(0,0,0);
 
+    public GameObject mouseEffectgameobject;
+
     private void Start()
     {
         Instance = this;
@@ -57,8 +59,9 @@ public class BoardManager : MonoBehaviour
                 if (selectedChessman == null)
                 {
                     openActionMenu();
-                }
-                else
+                    spawnAndResetMouseEffect(selectionX, selectionY);
+
+                } else
                 {
                     switch (status)
                     {
@@ -69,6 +72,7 @@ public class BoardManager : MonoBehaviour
                         case "attack":
                             Debug.Log("hit");
                             Debug.Log(selectedChessman.name);
+
                             selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack"); //SetTrigger在Animator是指提取Animator當中的變數。
                             attactChessman(selectionX, selectionY);
                             break;
@@ -140,6 +144,8 @@ public class BoardManager : MonoBehaviour
 
         BoardHighlights.Instance.Hidehighlights();
         selectedChessman = null;
+        spawnAndResetMouseEffect(selectionX, selectionY);
+
         closeActionMenu();
     }
 
@@ -298,4 +304,16 @@ public class BoardManager : MonoBehaviour
                 Vector3.forward * selectionY + Vector3.right * (selectionX + 1));
         }
     } //繪製棋盤
+
+    void spawnAndResetMouseEffect(int X,int Y) {
+        destroyOldMouseEffect();
+        GameObject newObject = Instantiate(mouseEffectgameobject);
+        newObject.transform.position = getTileCenter(X, Y);
+    }
+    void destroyOldMouseEffect() {
+        GameObject olderObject = GameObject.FindGameObjectWithTag("mouseEffect");
+        if (olderObject) {
+            Destroy(olderObject);
+        }
+    }
 }
