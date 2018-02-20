@@ -303,7 +303,6 @@ public class BoardManager : MonoBehaviour
         }
     } //繪製棋盤
 
-<<<<<<< HEAD
     void spawnAndResetMouseEffect(int X,int Y) {
         destroyOldMouseEffect();
         GameObject newObject = Instantiate(mouseEffectgameobject);
@@ -315,7 +314,5 @@ public class BoardManager : MonoBehaviour
             Destroy(olderObject);
         }
     }
-=======
     
->>>>>>> 4a76ea1c39bac5c89df1c4466a6fea8332b77d28
 }
