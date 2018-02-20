@@ -134,7 +134,7 @@ public class BoardManager : MonoBehaviour
         Chessmans[ x, y ] = chessmans; //安排Chessmans去array裡新的位置
     } //通用移動
 
-    public void moveChessman(int x,int y) //選擇棋子移動
+    public void moveChessman(int x,int y) //棋子移動
     {
         if (allowedMoves[x,y])
         {
@@ -228,8 +228,6 @@ public class BoardManager : MonoBehaviour
                 spawnChessman(0, 2, 1);
 
                 spawnChessman(1, 2, 4);
-
-                spawnChessman(2, 1, 0);
                 break;
         }
     }
@@ -305,6 +303,7 @@ public class BoardManager : MonoBehaviour
         }
     } //繪製棋盤
 
+<<<<<<< HEAD
     void spawnAndResetMouseEffect(int X,int Y) {
         destroyOldMouseEffect();
         GameObject newObject = Instantiate(mouseEffectgameobject);
@@ -316,4 +315,7 @@ public class BoardManager : MonoBehaviour
             Destroy(olderObject);
         }
     }
+=======
+    
+>>>>>>> 4a76ea1c39bac5c89df1c4466a6fea8332b77d28
 }
