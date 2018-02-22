@@ -8,8 +8,13 @@ public class Datebase : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (instance == null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+
+        } else {
+            Destroy(gameObject);
+        }
     }
 
     public int sceneLevel = 0;
