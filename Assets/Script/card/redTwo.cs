@@ -5,8 +5,16 @@ using UnityEngine.EventSystems;
 
 public class redTwo : Draggable, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    
     public override void OnEndDrag(PointerEventData eventData)
     {
+        gameController.instance.OnPlayerReadyToDropDownCards();
+        this.transform.SetParent(parentToReturnTo);
+        if (!gameModel.instance.checkCostCanBeDeduct(cost)) {
+            //out
+            return;
+        }
+
         Debug.Log("red here");
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -20,6 +28,5 @@ public class redTwo : Draggable, IBeginDragHandler, IDragHandler, IEndDragHandle
                 BoardManager.Instance.spawnChessman(0, (int)v3.x, (int)v3.z);
             }
         }
-        this.transform.SetParent(parentToReturnTo);
     }
 }

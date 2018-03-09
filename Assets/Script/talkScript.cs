@@ -13,7 +13,7 @@ public class talkScript : MonoBehaviour
     int counter = -1;
 
     public List<string> textArray;
-
+    public List<leveltalkPlayScript> leveltalkPlayScriptArray;
     private void Awake()
     {
         uiText = GetComponent<Text>();
@@ -34,14 +34,50 @@ public class talkScript : MonoBehaviour
         {
             return;
         }
+        uiText.text = leveltalkPlayScriptArray[Datebase.instance.sceneLevel].playScriptArray[ counter ].text;
+        float color = 0.6f;
+        switch (leveltalkPlayScriptArray[ Datebase.instance.sceneLevel ].playScriptArray[ counter ].from) {
+            case character.Narration:
+                charImage.color = new Color(color, color, color, color);
+                
+                charImageTwo.color = new Color(1, 1, 1, color);
+                break;
+            case character.warrior:
+                charImage.color = new Color(1, 1, 1, 1);
+                charImageTwo.color = new Color(color, color, color, color);
+                break;
+            case character.priest:
+                charImage.color = new Color(color, color, color, color);
+                charImageTwo.color = new Color(1, 1, 1, 1);
+                break;
+            default:
+                break;
+        }
 
-        uiText.text = textArray[counter];
-
-        if (counter >= textArray.Count - 1)
+        if (counter >= leveltalkPlayScriptArray[ Datebase.instance.sceneLevel ].playScriptArray.Count - 1)
         {
             charImage.gameObject.SetActive(false);
             charImageTwo.gameObject.SetActive(false);
             talkImage.gameObject.SetActive(false);
         }
     }
+
+    public enum character {
+        Narration,
+        warrior,
+        priest
+        
+    }
+
+    [System.Serializable]
+    public class leveltalkPlayScript {
+        public List<talkPlayScript> playScriptArray;
+    }
+
+    [System.Serializable]
+    public class talkPlayScript {
+        public character from;
+        public string text;
+    }
+
 }

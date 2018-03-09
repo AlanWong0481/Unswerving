@@ -4,12 +4,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+public enum dir {
+    up,
+    down,
+    left,
+    right
+} 
+
 public class buttonController : MonoBehaviour
 {
-    public string dir = "";
+    public dir buttonDir;
+    
+
 
     public void OnbuttonMoveUp()
     {
-        print(dir);
+        BoardManager.Instance.uiMovement(buttonDir);
     }
 }

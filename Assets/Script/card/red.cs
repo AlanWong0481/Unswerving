@@ -8,6 +8,12 @@ public class red : Draggable, IBeginDragHandler, IDragHandler, IEndDragHandler
     public override void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("red here");
+        gameController.instance.OnPlayerReadyToDropDownCards();
+        this.transform.SetParent(parentToReturnTo);
+        if (!gameModel.instance.checkCostCanBeDeduct(cost)) {
+            //out
+            return;
+        }
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -19,6 +25,5 @@ public class red : Draggable, IBeginDragHandler, IDragHandler, IEndDragHandler
                 BoardManager.Instance.spawnChessman(2,(int)v3.x, (int)v3.z);
             }
         }
-        this.transform.SetParent(parentToReturnTo);
     }
 }

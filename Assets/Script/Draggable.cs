@@ -8,12 +8,15 @@ public class Draggable : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHa
     Camera myCamera;
     public Transform parentToReturnTo = null;
 
+    public int cost;
+
     private void Awake() {
         myCamera = Camera.main;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        gameController.instance.OnPlayerPickUpCards(this);
         Debug.Log("OnBeginDrag");
 
         parentToReturnTo = this.transform.parent;
@@ -29,6 +32,7 @@ public class Draggable : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHa
     public virtual void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("OnEndDrag");
-        this.transform.SetParent( parentToReturnTo );
+        
+        //this.transform.SetParent( parentToReturnTo );
     }
 }

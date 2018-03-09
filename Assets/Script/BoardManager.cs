@@ -46,17 +46,80 @@ public class BoardManager : MonoBehaviour
         drawChessboard();
         MouseButtonDownAction();
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            generalMove(whiteChess[0],new Vector2(2,2));
+
+    }
+
+    public void uiMovement(dir dir) {
+        if (!selectedChessman) {
+            return;
+        }
+
+        int x = selectedChessman.CurrentX;
+        int y = selectedChessman.CurrentY;
+        switch (dir) {
+            case dir.up:
+                y += 1;
+                selectedChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0,0,0);
+                break;
+            case dir.down:
+                y -= 1;
+                selectedChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 180, 0);
+                break;
+            case dir.left:
+                x -= 1;
+                selectedChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 270, 0);
+                break;
+            case dir.right:
+                x += 1;
+                selectedChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 90, 0);
+                break;
+            default:
+                break;
+        }
+
+        if (x < 5 && x >= 0 && y < 8 && y >= 0 ) {
+            Chessman OverlappingChessman = checkOverlapping(new Vector2(x, y));
+            if (OverlappingChessman) {
+                playerChessHitSomething(OverlappingChessman);
+                return;
+            }
+            generalMove(selectedChessman, new Vector2(x, y));
+        }
+
+    }
+
+    public Chessman playerHitChessman;
+
+    public void playerChessHitSomething(Chessman OverlappingChessman) {
+        if (!OverlappingChessman.isWhite) {
+            // hit enemy
+            playerHitChessman = OverlappingChessman;
+            selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack"); //SetTrigger在Animator是指提取Animator當中的變數。
         }
     }
+
+    public Chessman checkOverlapping(Vector2 v2) {
+        foreach (var item in allChess) {
+            if (v2 .x== item.CurrentX && v2 .y== item.CurrentY) {
+                return item;
+            }
+        }
+        return null;
+    }
+
 
     public GameObject actionMenu;
     public Vector2 saveChessmanVector2;
 
     void MouseButtonDownAction()
     {
+        if (Input.GetMouseButtonDown(0)) {
+            if (selectionX >= 0 && selectionY >= 0) {
+                selectedChessman = Chessmans[ selectionX , selectionY ];
+            }
+        }
+
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             if (selectionX >= 0 && selectionY >= 0)
@@ -85,9 +148,10 @@ public class BoardManager : MonoBehaviour
                 }
             }
         }
+        */
     } //滑鼠點擊之後執行的事件
 
-    void openActionMenu()
+        void openActionMenu()
     {
         saveChessmanVector2 = new Vector2(selectionX,selectionY);
         actionMenu.SetActive(true);
