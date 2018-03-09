@@ -26,12 +26,6 @@ public class talkScript : MonoBehaviour
             counter++;
             textDataBase(counter);
         }
-
-        if (Input.GetMouseButtonDown(0) && counter < textArray.Count - 1) //左鍵繼續
-        {
-            counter--;
-            textDataBase(counter);
-        }
     }
 
     void textDataBase(int counter)

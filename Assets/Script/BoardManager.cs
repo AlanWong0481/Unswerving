@@ -45,6 +45,11 @@ public class BoardManager : MonoBehaviour
         updateSelection();
         drawChessboard();
         MouseButtonDownAction();
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            generalMove(whiteChess[0],new Vector2(2,2));
+        }
     }
 
     public GameObject actionMenu;
@@ -139,14 +144,11 @@ public class BoardManager : MonoBehaviour
         if (allowedMoves[x,y])
         {
             generalMove(selectedChessman, new Vector2(x, y));
-            Chessmans[x, y].hasActed = true;
         }
 
         BoardHighlights.Instance.Hidehighlights();
         selectedChessman = null;
         spawnAndResetMouseEffect(selectionX, selectionY);
-
-        closeActionMenu();
     }
 
     public void attactChessman(int x, int y) //攻擊棋子
