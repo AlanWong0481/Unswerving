@@ -45,8 +45,6 @@ public class BoardManager : MonoBehaviour
         updateSelection();
         drawChessboard();
         MouseButtonDownAction();
-
-
     }
 
     public void uiMovement(dir dir) {

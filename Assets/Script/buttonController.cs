@@ -14,8 +14,6 @@ public enum dir {
 public class buttonController : MonoBehaviour
 {
     public dir buttonDir;
-    
-
 
     public void OnbuttonMoveUp()
     {
