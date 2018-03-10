@@ -71,8 +71,6 @@ public class BoardManager : MonoBehaviour
                 x += 1;
                 selectedChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 90, 0);
                 break;
-            default:
-                break;
         }
 
         if (x < 5 && x >= 0 && y < 8 && y >= 0 ) {
@@ -82,9 +80,9 @@ public class BoardManager : MonoBehaviour
                 return;
             }
             generalMove(selectedChessman, new Vector2(x, y));
-        }
+        } //限制角色移動於場地上的範圍
 
-    }
+    } //角色轉向
 
     public Chessman playerHitChessman;
 
@@ -94,7 +92,7 @@ public class BoardManager : MonoBehaviour
             playerHitChessman = OverlappingChessman;
             selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack"); //SetTrigger在Animator是指提取Animator當中的變數。
         }
-    }
+    } //角色攻擊敵人
 
     public Chessman checkOverlapping(Vector2 v2) {
         foreach (var item in allChess) {
@@ -111,43 +109,13 @@ public class BoardManager : MonoBehaviour
 
     void MouseButtonDownAction()
     {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0))
+        {
             if (selectionX >= 0 && selectionY >= 0) {
                 selectedChessman = Chessmans[ selectionX , selectionY ];
             }
         }
-
-        /*
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (selectionX >= 0 && selectionY >= 0)
-            {
-                if (selectedChessman == null)
-                {
-                    openActionMenu();
-                    spawnAndResetMouseEffect(selectionX, selectionY);
-
-                } else
-                {
-                    switch (status)
-                    {
-                        case "move":
-                            moveChessman(selectionX, selectionY);
-                            break;
-
-                        case "attack":
-                            Debug.Log("hit");
-                            Debug.Log(selectedChessman.name);
-
-                            selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack"); //SetTrigger在Animator是指提取Animator當中的變數。
-                            attactChessman(selectionX, selectionY);
-                            break;
-                    }
-                }
-            }
-        }
-        */
-    } //滑鼠點擊之後執行的事件
+    } //滑鼠點擊
 
         void openActionMenu()
     {
@@ -345,14 +313,14 @@ public class BoardManager : MonoBehaviour
 
     private void drawChessboard()
     {
-        Vector3 widthLine = Vector3.right * 5;
-        Vector3 heigthLine = Vector3.forward * 8;
+        Vector3 widthLine = Vector3.right * 7;
+        Vector3 heigthLine = Vector3.forward * 10;
 
-        for(int i = 0; i <= 8; i++)
+        for(int i = 0; i <= 10; i++)
         {
             Vector3 start = Vector3.forward * i;
             Debug.DrawLine(start, start + widthLine);
-            for (int j = 0; j <= 5; j++)
+            for (int j = 0; j <= 7; j++)
             {
                 start = Vector3.right * j;
                 Debug.DrawLine(start, start + heigthLine);
