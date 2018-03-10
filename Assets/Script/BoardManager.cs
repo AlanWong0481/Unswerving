@@ -39,6 +39,8 @@ public class BoardManager : MonoBehaviour
         spawnAllChessmans();
         updateWhiteBlackChessmanData();
         selectedChessman = whiteChess[ 0 ];
+        gameView.instance.showupPlayerSelectWhatChessman();
+
     }
 
     private void Update()
@@ -82,6 +84,7 @@ public class BoardManager : MonoBehaviour
         if (x < 5 && x >= 0 && y < 8 && y >= 0 ) {
             Chessman OverlappingChessman = checkOverlapping(new Vector2(x, y));
             selectedChessman.actionVal--;
+            gameView.instance.updateActonDisplay();
             if (OverlappingChessman) {
                 playerChessHitSomething(OverlappingChessman);
                 return;
@@ -147,6 +150,7 @@ public class BoardManager : MonoBehaviour
         {
             if (selectionX >= 0 && selectionY >= 0) {
                 selectedChessman = Chessmans[ selectionX , selectionY ];
+                gameView.instance.showupPlayerSelectWhatChessman();
             }
         }
     } //滑鼠點擊

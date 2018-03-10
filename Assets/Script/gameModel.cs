@@ -66,4 +66,9 @@ public class gameModel : SingletonMonoBehavior<gameModel> {
         return BoardManager.Instance.selectedChessman.actionVal;
     }
 
+    public string getCurrentChessmaName() {
+        //暫時
+        return BoardManager.Instance.selectedChessman.gameObject.name;
+    }
+
 }
