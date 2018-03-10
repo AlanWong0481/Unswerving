@@ -28,7 +28,6 @@ public class gameView : SingletonMonoBehavior<gameView> {
         int attackval = gameModel.instance.getCurrentChessmanDamage();
         int Actionval = gameModel.instance.getCurrentChessmanActionVal();
 
-
         print("你選擇了" + gameModel.instance.getCurrentChessmaName() + "他的血量值有" + healthval + " 他的攻擊值有" + attackval + "  他的移動值有" + Actionval);
     }
 
