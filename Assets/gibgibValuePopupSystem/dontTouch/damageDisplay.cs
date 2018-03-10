@@ -39,7 +39,6 @@ public class damageDisplay : MonoBehaviour {
             digits = 1;
         }
         float spawnXAxisLimit = ((textDistance * digits) / 2) - (textDistance / 2);
-        Debug.Log(digits + " / " + damage);
         //work the damage to digits function is work
         int number = damage;
         for (int i = 0; i < digits; i++) {
