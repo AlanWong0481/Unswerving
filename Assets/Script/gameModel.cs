@@ -54,4 +54,16 @@ public class gameModel : SingletonMonoBehavior<gameModel> {
         return true;
     }
 
+    public int getCurrentChessmanHealth() {
+        return BoardManager.Instance.selectedChessman.health;
+    }
+
+    public int getCurrentChessmanDamage() {
+        return BoardManager.Instance.selectedChessman.damage;
+    }
+
+    public int getCurrentChessmanActionVal() {
+        return BoardManager.Instance.selectedChessman.actionVal;
+    }
+
 }

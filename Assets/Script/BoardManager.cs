@@ -63,19 +63,19 @@ public class BoardManager : MonoBehaviour
         switch (dir) {
             case dir.up:
                 y += 1;
-                selectedChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0,0,0);
+                selectedChessman.gameObject.transform.rotation = Quaternion.Euler(0,0,0);
                 break;
             case dir.down:
                 y -= 1;
-                selectedChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 180, 0);
+                selectedChessman.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
                 break;
             case dir.left:
                 x -= 1;
-                selectedChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 270, 0);
+                selectedChessman.gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
                 break;
             case dir.right:
                 x += 1;
-                selectedChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 90, 0);
+                selectedChessman.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
                 break;
         }
 
