@@ -38,6 +38,7 @@ public class BoardManager : MonoBehaviour
         Instance = this;
         spawnAllChessmans();
         updateWhiteBlackChessmanData();
+        selectedChessman = whiteChess[ 0 ];
     }
 
     private void Update()
@@ -116,13 +117,13 @@ public class BoardManager : MonoBehaviour
 
     public void OnPlayerFinishAttack() {
         if (selectedChessman.CurrentX == playerHitChessman.CurrentX + 1 && selectedChessman.CurrentY == playerHitChessman.CurrentY) {
-            playerHitChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0,90,0);
+            playerHitChessman.gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
         } else if (selectedChessman.CurrentX == playerHitChessman.CurrentX - 1 && selectedChessman.CurrentY == playerHitChessman.CurrentY) {
-            playerHitChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 270, 0);
+            playerHitChessman.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         } else if (selectedChessman.CurrentX == playerHitChessman.CurrentX && selectedChessman.CurrentY == playerHitChessman.CurrentY + 1) {
-            playerHitChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 180, 0);
+            playerHitChessman.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
         } else if (selectedChessman.CurrentX == playerHitChessman.CurrentX && selectedChessman.CurrentY == playerHitChessman.CurrentY - 1) {
-            playerHitChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 0, 0);
+            playerHitChessman.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         playerHitChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack");
 
