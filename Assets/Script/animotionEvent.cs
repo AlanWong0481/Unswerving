@@ -10,6 +10,8 @@ public class animotionEvent : MonoBehaviour {
         Chessman enemy = BoardManager.Instance.playerHitChessman;
 
         enemy.health -= BoardManager.Instance.selectedChessman.damage;
+        damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.selectedChessman.damage, 0, enemy.gameObject.transform);
+
         if (enemy.health <= 0) {
             BoardManager.Instance.inAttack = false;
         }
@@ -18,7 +20,6 @@ public class animotionEvent : MonoBehaviour {
    
 
         BoardManager.Instance.OnPlayerFinishAttack();
-        //damageDisplay.instance.spawnDamageDisplay(selectedChessman.damage, 1, OverlappingChessman.gameObject.transform);
     }
 
     public void enemyAttack() {
@@ -26,7 +27,8 @@ public class animotionEvent : MonoBehaviour {
 
         Chessman playerChessman = BoardManager.Instance.selectedChessman;
 
-        playerChessman.health -= BoardManager.Instance.selectedChessman.damage;
+        playerChessman.health -= BoardManager.Instance.playerHitChessman.damage;
+        damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.playerHitChessman.damage,1, playerChessman.gameObject.transform);
 
         if (playerChessman.health <= 0) {
             //player died
