@@ -12,6 +12,4 @@ public class gameView : SingletonMonoBehavior<gameView> {
         // Cost Display
         print(gameModel.instance.cur_Cost);
     }
-
-
 }
