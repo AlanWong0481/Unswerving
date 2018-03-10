@@ -52,6 +52,11 @@ public class BoardManager : MonoBehaviour
             return;
         }
 
+        if (selectedChessman.actionVal <= 0) {
+            gameController.instance.OnPlayerSelectedChessmanRunOutActionVal();
+            return;
+        }
+
         int x = selectedChessman.CurrentX;
         int y = selectedChessman.CurrentY;
         switch (dir) {
@@ -75,22 +80,28 @@ public class BoardManager : MonoBehaviour
 
         if (x < 5 && x >= 0 && y < 8 && y >= 0 ) {
             Chessman OverlappingChessman = checkOverlapping(new Vector2(x, y));
+            selectedChessman.actionVal--;
             if (OverlappingChessman) {
                 playerChessHitSomething(OverlappingChessman);
                 return;
             }
             generalMove(selectedChessman, new Vector2(x, y));
+
         } //限制角色移動於場地上的範圍
 
     } //角色轉向
 
     public Chessman playerHitChessman;
+    public bool inAttack = false;
+
 
     public void playerChessHitSomething(Chessman OverlappingChessman) {
         if (!OverlappingChessman.isWhite) {
             // hit enemy
+            inAttack = true;
             playerHitChessman = OverlappingChessman;
             selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack"); //SetTrigger在Animator是指提取Animator當中的變數。
+
         }
     } //角色攻擊敵人
 
@@ -103,12 +114,34 @@ public class BoardManager : MonoBehaviour
         return null;
     }
 
+    public void OnPlayerFinishAttack() {
+        if (selectedChessman.CurrentX == playerHitChessman.CurrentX + 1 && selectedChessman.CurrentY == playerHitChessman.CurrentY) {
+            playerHitChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0,90,0);
+        } else if (selectedChessman.CurrentX == playerHitChessman.CurrentX - 1 && selectedChessman.CurrentY == playerHitChessman.CurrentY) {
+            playerHitChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 270, 0);
+        } else if (selectedChessman.CurrentX == playerHitChessman.CurrentX && selectedChessman.CurrentY == playerHitChessman.CurrentY + 1) {
+            playerHitChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 180, 0);
+        } else if (selectedChessman.CurrentX == playerHitChessman.CurrentX && selectedChessman.CurrentY == playerHitChessman.CurrentY - 1) {
+            playerHitChessman.gameObject.transform.rotation = Quaternion.EulerAngles(0, 0, 0);
+        }
+        playerHitChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack");
+
+
+    }
+
+    public void OnEnemyFinishAttack() {
+        inAttack = false;
+    }
 
     public GameObject actionMenu;
     public Vector2 saveChessmanVector2;
 
     void MouseButtonDownAction()
     {
+        if (inAttack) {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             if (selectionX >= 0 && selectionY >= 0) {

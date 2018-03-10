@@ -6,6 +6,8 @@ public class gameModel : SingletonMonoBehavior<gameModel> {
     public int costTotal;
     public int cur_Cost;
 
+    public string gameoverReason = "";
+
     public Draggable selectedCards;
 
     public void init() {
@@ -24,6 +26,30 @@ public class gameModel : SingletonMonoBehavior<gameModel> {
     public bool checkCostCanBeDeduct(int val) {
         if (cur_Cost - val < 0) {
             return false;
+        }
+        return true;
+    }
+
+    public bool checkIsAllWhiteChessRunOutActionVal() {
+        foreach (var item in BoardManager.Instance.whiteChess) {
+            if (!item) {
+                continue;
+            }
+            if (item.actionVal>0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public bool checkIsAllWhiteChessDied() {
+        foreach (var item in BoardManager.Instance.whiteChess) {
+            if (!item) {
+                continue;
+            }
+            if (item.health > 0) {
+                return false;
+            }
         }
         return true;
     }

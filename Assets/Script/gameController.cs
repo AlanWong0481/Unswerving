@@ -32,6 +32,42 @@ public class gameController : SingletonMonoBehavior<gameController> {
 
     }
 
+    public void OnPlayerSelectedChessmanRunOutActionVal() {
+        print("你的角色已用盡體力");
+        if (gameModel.instance.checkIsAllWhiteChessRunOutActionVal()) {
+            OnAllChessManRunOutActionVal();
+        }
+    }
+
+    public void OnPlayerSelectedChessmanDied() {
+        print("你的角色已陣亡");
+        if (gameModel.instance.checkIsAllWhiteChessDied()) {
+            OnAllSelectedChessmanDied();
+        }
+    }
+
+    public void OnAllSelectedChessmanDied() {
+        print("你的所有角色已陣亡");
+        gameModel.instance.gameoverReason = "所有角色已陣亡";
+
+        gameover();
+
+    }
+
+    public void OnAllChessManRunOutActionVal() {
+        print("你的所有角色已用盡體力");
+        gameModel.instance.gameoverReason = "所有角色已用盡體力";
+
+
+        gameover();
+    }
+
+    public void gameover() {
+        print("你已經輸了 原因：" + gameModel.instance.gameoverReason);
+    }
+
+  
+
     public void OnPlayerPickUpCards(Draggable cards) {
         gameModel.instance. selectedCards = cards;
     }

@@ -12,6 +12,8 @@ public class Chessman : MonoBehaviour
     public bool hasActed;
     public bool hasAttacked;
 
+    public int actionVal = 20;
+
     public void SetPosition(int x, int y)
     {
         CurrentX = x;
