@@ -5,7 +5,6 @@ using UnityEngine;
 public class animotionEvent : MonoBehaviour {
 
 	public void playerAttack() {
-
         Chessman enemy = BoardManager.Instance.playerHitChessman;
 
         enemy.health -= BoardManager.Instance.selectedChessman.damage;
@@ -22,7 +21,6 @@ public class animotionEvent : MonoBehaviour {
     }
 
     public void enemyAttack() {
-
         Chessman playerChessman = BoardManager.Instance.selectedChessman;
 
         playerChessman.health -= BoardManager.Instance.playerHitChessman.damage;
