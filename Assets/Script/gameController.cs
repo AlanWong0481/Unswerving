@@ -41,6 +41,7 @@ public class gameController : SingletonMonoBehavior<gameController> {
 
     public void OnPlayerSelectedChessmanDied() {
         print("你的角色已陣亡");
+        BoardManager.Instance.selectedChessman = null;
         if (gameModel.instance.checkIsAllWhiteChessDied()) {
             OnAllSelectedChessmanDied();
         }
