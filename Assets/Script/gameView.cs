@@ -12,7 +12,6 @@ public class gameView : SingletonMonoBehavior<gameView> {
         // Cost Display
         print(gameModel.instance.cur_Cost);
     }
-
     public void updateActonDisplay() {
         int val = gameModel.instance.getCurrentChessmanActionVal();
         print(gameModel.instance.getCurrentChessmaName() + "的移動值還有" + val + "步");
@@ -30,5 +29,4 @@ public class gameView : SingletonMonoBehavior<gameView> {
 
         print("你選擇了" + gameModel.instance.getCurrentChessmaName() + "他的血量值有" + healthval + " 他的攻擊值有" + attackval + "  他的移動值有" + Actionval);
     }
-
 }

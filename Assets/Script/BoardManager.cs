@@ -84,7 +84,7 @@ public class BoardManager : MonoBehaviour
                 break;
         }
 
-        if (x < 5 && x >= 0 && y < 8 && y >= 0 ) {
+        if (x < 7 && x >= 0 && y < 10 && y >= 0 ) {
             Chessman OverlappingChessman = checkOverlapping(new Vector2(x, y));
             
             if (OverlappingChessman) {
@@ -95,13 +95,12 @@ public class BoardManager : MonoBehaviour
             gameView.instance.updateActonDisplay();
             generalMove(selectedChessman, new Vector2(x, y));
 
-        } //限制角色移動於場地上的範圍
+        }
 
-    } //角色轉向
+    } //限制角色移動於場地上的範圍和角色轉向
 
     public Chessman playerHitChessman;
     public bool inAttack = false;
-
 
     public void playerChessHitSomething(Chessman OverlappingChessman) {
         if (!OverlappingChessman.isWhite) {
@@ -123,9 +122,10 @@ public class BoardManager : MonoBehaviour
             }
         }
         return null;
-    }
+    } //檢查角色是否重疊
 
-    public void OnPlayerFinishAttack() {
+    public void OnPlayerFinishAttack()
+    {
         if (selectedChessman.CurrentX == playerHitChessman.CurrentX + 1 && selectedChessman.CurrentY == playerHitChessman.CurrentY) {
             playerHitChessman.gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
         } else if (selectedChessman.CurrentX == playerHitChessman.CurrentX - 1 && selectedChessman.CurrentY == playerHitChessman.CurrentY) {
@@ -136,13 +136,11 @@ public class BoardManager : MonoBehaviour
             playerHitChessman.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         playerHitChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack");
-
-
-    }
+    } //當角色完成攻擊
 
     public void OnEnemyFinishAttack() {
         inAttack = false;
-    }
+    } //當敵人完成攻擊
 
     public GameObject actionMenu;
     public Vector2 saveChessmanVector2;
@@ -287,16 +285,16 @@ public class BoardManager : MonoBehaviour
     private void spawnAllChessmans() //生成所有棋子
     {
         activeChessman = new List<GameObject>();
-        Chessmans = new Chessman[5,8];
+        Chessmans = new Chessman[7,10];
 
         switch (Datebase.instance.sceneLevel)
         {
             case 0 :
-                spawnChessman(0, 2, 1);
+                spawnChessman(0, 3, 1);
 
                 spawnChessman(1, 2, 4);
 
-                spawnChessman(2, 1, 0);
+                spawnChessman(2, 2, 0);
 
                 spawnChessman(1, 4, 6);
 

@@ -67,8 +67,6 @@ public class gameController : SingletonMonoBehavior<gameController> {
         print("你已經輸了 原因：" + gameModel.instance.gameoverReason);
     }
 
-  
-
     public void OnPlayerPickUpCards(Draggable cards) {
         gameModel.instance. selectedCards = cards;
     }

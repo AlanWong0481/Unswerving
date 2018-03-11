@@ -22,7 +22,7 @@ public class Chessman : MonoBehaviour
 
     public virtual bool[,] PossibleMove()
     {
-        return new bool[5, 8];
+        return new bool[7, 10];
     }
 
     public bool moveLimit(Vector2 v2) //移動限制
