@@ -51,6 +51,9 @@ public class BoardManager : MonoBehaviour
     }
 
     public void uiMovement(dir dir) {
+        if (inAttack) {
+            return;
+        }
         if (!selectedChessman) {
             return;
         }
@@ -83,12 +86,13 @@ public class BoardManager : MonoBehaviour
 
         if (x < 5 && x >= 0 && y < 8 && y >= 0 ) {
             Chessman OverlappingChessman = checkOverlapping(new Vector2(x, y));
-            selectedChessman.actionVal--;
-            gameView.instance.updateActonDisplay();
+            
             if (OverlappingChessman) {
                 playerChessHitSomething(OverlappingChessman);
                 return;
             }
+            selectedChessman.actionVal--;
+            gameView.instance.updateActonDisplay();
             generalMove(selectedChessman, new Vector2(x, y));
 
         } //限制角色移動於場地上的範圍
@@ -106,6 +110,9 @@ public class BoardManager : MonoBehaviour
             playerHitChessman = OverlappingChessman;
             selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack"); //SetTrigger在Animator是指提取Animator當中的變數。
 
+            selectedChessman.actionVal--;
+            gameView.instance.updateActonDisplay();
+            return;
         }
     } //角色攻擊敵人
 
