@@ -153,6 +153,8 @@ public class BoardManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            print(new Vector2(selectionX, selectionY));
+
             if (selectionX >= 0 && selectionY >= 0) {
                 selectedChessman = Chessmans[ selectionX , selectionY ];
                 gameView.instance.showupPlayerSelectWhatChessman();
@@ -260,17 +262,19 @@ public class BoardManager : MonoBehaviour
             return;
 
         RaycastHit hit;
-        
-       if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit, 50.0f, LayerMask.GetMask("ChessPlane"))) //場景人物位置
+
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit, 50.0f, LayerMask.GetMask("ChessPlane"))) //場景人物位置
         {
             selectionX = (int)hit.point.x;
             selectionY = (int)hit.point.z;
         }
         else
         {
+
             selectionX = -1;
             selectionY = -1;
         }
+
     }
 
     public void spawnChessman(int index,int x, int y) //生成棋子
