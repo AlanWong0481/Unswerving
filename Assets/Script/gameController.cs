@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class gameController : SingletonMonoBehavior<gameController> {
 
+    public GameObject Poison;
+
     private void Start() {
         gameModel.instance.init();
         gameView.instance.init();
         init();
     }
-    private void Update() {
+    private void Update()
+    {
         testFunction();
-        
     }
 
     public void testFunction() {
@@ -83,5 +85,10 @@ public class gameController : SingletonMonoBehavior<gameController> {
     public void OnPlayerDropDownCards() {
         gameModel.instance.deductCost(gameModel.instance.selectedCards.cost);
         gameView.instance.updateCostDisplay();
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        BoardManager.Instance.selectedChessman.actionVal++;
     }
 }
