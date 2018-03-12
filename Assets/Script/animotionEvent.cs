@@ -16,8 +16,6 @@ public class animotionEvent : MonoBehaviour {
         }
         enemy.healthChecker();
 
-   
-
         BoardManager.Instance.OnPlayerFinishAttack();
     }
 
