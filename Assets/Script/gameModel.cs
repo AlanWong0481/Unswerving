@@ -35,7 +35,7 @@ public class gameModel : SingletonMonoBehavior<gameModel> {
             if (!item) {
                 continue;
             }
-            if (item.curActionVal>0) {
+            if (item.curActionVal > 0) {
                 return false;
             }
         }

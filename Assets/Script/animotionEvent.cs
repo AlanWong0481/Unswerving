@@ -8,6 +8,7 @@ public class animotionEvent : MonoBehaviour {
         Chessman enemy = BoardManager.Instance.playerHitChessman;
 
         enemy.health -= BoardManager.Instance.selectedChessman.damage;
+        Instantiate(gameView.instance.hitEnemyParticle, enemy.gameObject.transform.position, Quaternion.identity);
         damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.selectedChessman.damage, 0, enemy.gameObject.transform);
 
         if (enemy.health <= 0) {
