@@ -2,17 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum groupEnum {
+    white,
+    black,
+    other,
+    item
+}
+
 public class Chessman : MonoBehaviour
 {
     public int health;
     public int damage;
     public int CurrentX { set; get; }
     public int CurrentY { set; get; }
-    public bool isWhite;
+    public groupEnum group;
     public bool hasActed;
     public bool hasAttacked;
 
-    public int actionVal = 20;
+    public int ActionVal = 20;
+    public int curActionVal = 0;
+
+    public void init() {
+        resetActionVal();
+    }
+
+    public void resetActionVal() {
+        curActionVal = ActionVal;
+    }
 
     public void SetPosition(int x, int y)
     {

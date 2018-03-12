@@ -58,7 +58,7 @@ public class BoardManager : MonoBehaviour
             return;
         }
 
-        if (selectedChessman.actionVal <= 0) {
+        if (selectedChessman.curActionVal <= 0) {
             gameController.instance.OnPlayerSelectedChessmanRunOutActionVal();
             return;
         }
@@ -86,12 +86,18 @@ public class BoardManager : MonoBehaviour
 
         if (x < 7 && x >= 0 && y < 10 && y >= 0 ) {
             Chessman OverlappingChessman = checkOverlapping(new Vector2(x, y));
-            
+
             if (OverlappingChessman) {
-                playerChessHitSomething(OverlappingChessman);
-                return;
+                if (OverlappingChessman.group == groupEnum.black) {
+                    playerChessHitEnemy(OverlappingChessman);
+                    return;
+                }
+                if (OverlappingChessman.group == groupEnum.item) {
+                    playerChessHititem(OverlappingChessman);
+                }
             }
-            selectedChessman.actionVal--;
+            
+            selectedChessman.curActionVal--;
             gameView.instance.updateActonDisplay();
             generalMove(selectedChessman, new Vector2(x, y));
 
@@ -102,18 +108,24 @@ public class BoardManager : MonoBehaviour
     public Chessman playerHitChessman;
     public bool inAttack = false;
 
-    public void playerChessHitSomething(Chessman OverlappingChessman) {
-        if (!OverlappingChessman.isWhite) {
-            // hit enemy
+    public void playerChessHitEnemy(Chessman OverlappingChessman) {
             inAttack = true;
             playerHitChessman = OverlappingChessman;
             selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack"); //SetTrigger在Animator是指提取Animator當中的變數。
 
-            selectedChessman.actionVal--;
+            selectedChessman.curActionVal--;
             gameView.instance.updateActonDisplay();
             return;
-        }
     } //角色攻擊敵人
+
+    public void playerChessHititem(Chessman OverlappingChessman) {
+        playerHitChessman = OverlappingChessman;
+        bottle playerHitBottle = OverlappingChessman.gameObject.GetComponent<bottle>();
+        playerHitBottle.itemEvent();
+        Destroy(OverlappingChessman.gameObject);
+
+        return;
+    } //
 
     public Chessman checkOverlapping(Vector2 v2) {
         foreach (var item in allChess) {
@@ -157,6 +169,10 @@ public class BoardManager : MonoBehaviour
 
             if (selectionX >= 0 && selectionY >= 0) {
                 selectedChessman = Chessmans[ selectionX , selectionY ];
+                if (selectedChessman.group != groupEnum.white) {
+                    //選擇對象不是白方
+                    return;
+                }
                 gameView.instance.showupPlayerSelectWhatChessman();
             }
         }
@@ -233,7 +249,7 @@ public class BoardManager : MonoBehaviour
             return;
         }
 
-        if (Chessmans[x, y].isWhite) //禁止傷害隊友判定
+        if (Chessmans[x, y].group == groupEnum.white ) //禁止傷害隊友判定
         {
             return;
         }
@@ -284,6 +300,7 @@ public class BoardManager : MonoBehaviour
         Chessmans[x, y] = go.GetComponent<Chessman> ();
         Chessmans[x, y].SetPosition(x, y);
         activeChessman.Add(go);
+        Chessmans[ x, y ].init();
     }
 
     private void spawnAllChessmans() //生成所有棋子
@@ -301,6 +318,8 @@ public class BoardManager : MonoBehaviour
                 spawnChessman(2, 2, 0);
 
                 spawnChessman(1, 4, 6);
+
+                spawnChessman(3, 5, 3);
 
                 Debug.Log("test one");
                 break;
@@ -333,11 +352,11 @@ public class BoardManager : MonoBehaviour
         {
             Chessman chessmanItem = item.GetComponent<Chessman>();
             allChess.Add(chessmanItem);
-            if (chessmanItem.isWhite)
+            if (chessmanItem.group == groupEnum.white)
             {
                 whiteChess.Add(chessmanItem);
             }
-            else
+            else if(chessmanItem.group == groupEnum.black)
             {
                 blackChess.Add(chessmanItem);
             }

@@ -35,7 +35,7 @@ public class gameModel : SingletonMonoBehavior<gameModel> {
             if (!item) {
                 continue;
             }
-            if (item.actionVal>0) {
+            if (item.curActionVal>0) {
                 return false;
             }
         }
@@ -63,7 +63,7 @@ public class gameModel : SingletonMonoBehavior<gameModel> {
     }
 
     public int getCurrentChessmanActionVal() {
-        return BoardManager.Instance.selectedChessman.actionVal;
+        return BoardManager.Instance.selectedChessman.curActionVal;
     }
 
     public string getCurrentChessmaName() {

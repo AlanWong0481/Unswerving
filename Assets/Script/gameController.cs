@@ -89,6 +89,6 @@ public class gameController : SingletonMonoBehavior<gameController> {
 
     public void OnTriggerEnter(Collider other)
     {
-        BoardManager.Instance.selectedChessman.actionVal++;
+        BoardManager.Instance.selectedChessman.curActionVal++;
     }
 }
