@@ -6,6 +6,9 @@ public class gameModel : SingletonMonoBehavior<gameModel> {
     public int costTotal;
     public int cur_Cost;
 
+    public bool playerInMovingAni;
+
+
     public string gameoverReason = "";
 
     public Draggable selectedCards;

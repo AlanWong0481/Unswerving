@@ -75,4 +75,39 @@ public class Chessman : MonoBehaviour
             BoardManager.Instance.Chessmans[CurrentX, CurrentY] = null;
         }
     }
+
+    public bool isMoving = false;
+    float moveNeedTime = 1;
+    public Vector3 startV3;
+    public Vector3 endV3;
+    float lerpTime;
+
+    public void startAutoMovement(Vector3 toWhere) {
+        isMoving = true;
+        GetComponentInChildren<Animator>().SetBool("onWalk",isMoving);
+        gameModel.instance.playerInMovingAni = isMoving;
+        startV3 = gameObject.transform.position;
+        endV3 = toWhere;
+        lerpTime = 0;
+    }
+
+    public void endAutoMovement() {
+        isMoving = false;
+        GetComponentInChildren<Animator>().SetBool("onWalk", isMoving);
+        gameModel.instance.playerInMovingAni = isMoving;
+    }
+
+    public void lerpMove() {
+        lerpTime += Time.deltaTime / moveNeedTime;
+        gameObject.transform.position = Vector3.Lerp(startV3,endV3,lerpTime);
+        if (lerpTime >= 1) {
+            endAutoMovement();
+        }
+    }
+
+    private void Update() {
+        if (isMoving) {
+            lerpMove();
+        }
+    }
 }

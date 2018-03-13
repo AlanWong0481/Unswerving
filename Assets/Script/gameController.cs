@@ -6,6 +6,8 @@ public class gameController : SingletonMonoBehavior<gameController> {
 
     public GameObject Poison;
 
+    public GameObject winBox;
+
     private void Start() {
         gameModel.instance.init();
         gameView.instance.init();
@@ -32,6 +34,14 @@ public class gameController : SingletonMonoBehavior<gameController> {
 
     public void init() {
 
+    }
+
+    public void DamageChassman(Chessman target) {
+        target.health -= BoardManager.Instance.selectedChessman.damage;
+        Instantiate(gameView.instance.hitEnemyParticle, target.gameObject.transform.position, Quaternion.identity);
+        damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.selectedChessman.damage, 0, target.gameObject.transform);
+
+        target.healthChecker();
     }
 
     public void OnPlayerSelectedChessmanRunOutActionVal() {
@@ -85,6 +95,34 @@ public class gameController : SingletonMonoBehavior<gameController> {
     public void OnPlayerDropDownCards() {
         gameModel.instance.deductCost(gameModel.instance.selectedCards.cost);
         gameView.instance.updateCostDisplay();
+    }
+
+    public void OnPlayerClickSkillButton() {
+        Vector2 v2 = new Vector2(BoardManager.Instance.selectedChessman.CurrentX, BoardManager.Instance.selectedChessman.CurrentY);
+        List<Vector2> attackV2List = new List<Vector2>();
+        attackV2List.Add(new Vector2(v2.x - 1, v2.y - 1));
+        attackV2List.Add(new Vector2(v2.x , v2.y - 1));
+        attackV2List.Add(new Vector2(v2.x + 1, v2.y - 1));
+        attackV2List.Add(new Vector2(v2.x - 1, v2.y ));
+        attackV2List.Add(new Vector2(v2.x + 1, v2.y ));
+        attackV2List.Add(new Vector2(v2.x - 1, v2.y + 1));
+        attackV2List.Add(new Vector2(v2.x , v2.y + 1));
+        attackV2List.Add(new Vector2(v2.x + 1, v2.y + 1));
+
+        foreach (var item in attackV2List) {
+            int x = (int)item.x;
+            int y = (int)item.y;
+            if (!BoardManager.Instance.isInBoardRange(x,y)) {
+                continue;
+            }
+            if (!BoardManager.Instance.Chessmans[x,y]) {
+                continue;
+            }
+            if (BoardManager.Instance.Chessmans[ x, y ].group == groupEnum.black) {
+                //attackable
+                DamageChassman(BoardManager.Instance.Chessmans[ x, y ]);
+            }
+        }
     }
 
     public void OnTriggerEnter(Collider other)

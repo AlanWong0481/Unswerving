@@ -19,6 +19,8 @@ public class animotionEvent : MonoBehaviour {
         BoardManager.Instance.OnPlayerFinishAttack();
     }
 
+    
+
     public void enemyAttack() {
         Chessman playerChessman = BoardManager.Instance.selectedChessman;
 

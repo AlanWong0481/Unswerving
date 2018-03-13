@@ -60,6 +60,10 @@ public class BoardManager : MonoBehaviour {
             return;
         }
 
+        if (gameModel.instance.playerInMovingAni) {
+            return;
+        }
+
         int x = selectedChessman.CurrentX;
         int y = selectedChessman.CurrentY;
         switch (dir) {
@@ -81,12 +85,15 @@ public class BoardManager : MonoBehaviour {
                 break;
         }
 
-        if (x < 7 && x >= 0 && y < 10 && y >= 0) {
+        if (isInBoardRange(x,y)) {
             Chessman OverlappingChessman = checkOverlapping(new Vector2(x, y));
 
             if (OverlappingChessman) {
                 if (OverlappingChessman.group == groupEnum.black) {
                     playerChessHitEnemy(OverlappingChessman);
+                    return;
+                }
+                if (OverlappingChessman.group == groupEnum.other) {
                     return;
                 }
                 if (OverlappingChessman.group == groupEnum.item) {
@@ -96,11 +103,19 @@ public class BoardManager : MonoBehaviour {
 
             selectedChessman.curActionVal--;
             gameView.instance.updateActonDisplay();
-            generalMove(selectedChessman, new Vector2(x, y));
+            //generalMove(selectedChessman, new Vector2(x, y));
+            selectedChessman.startAutoMovement( generalMoveGetNewV3(selectedChessman, new Vector2(x, y)));
 
         }
 
     } //限制角色移動於場地上的範圍和角色轉向
+
+    public bool isInBoardRange(int x,int y) {
+        if (x < 7 && x >= 0 && y < 10 && y >= 0) {
+            return true;
+        }
+        return false;
+    }
 
     public Chessman playerHitChessman;
     public bool inAttack = false;
@@ -163,6 +178,9 @@ public class BoardManager : MonoBehaviour {
 
             if (selectionX >= 0 && selectionY >= 0) {
                 selectedChessman = Chessmans[ selectionX, selectionY ];
+                if (!selectedChessman) {
+                    return;
+                }
                 if (selectedChessman.group != groupEnum.white) {
                     //選擇對象不是白方
                     return;
@@ -211,10 +229,23 @@ public class BoardManager : MonoBehaviour {
         int y = (int)newPos.y;
 
         Chessmans[ chessmans.CurrentX, chessmans.CurrentY ] = null; //清空Chessmans array裡的當前位置
-        chessmans.transform.position = getTileCenter(x, y); // gameview 改變目標chessmans的坐標(顯示上改變
         chessmans.SetPosition(x, y); //gamemodel 改變目標chessmans的坐標(背景數值上改變
         Chessmans[ x, y ] = chessmans; //安排Chessmans去array裡新的位置
+
+        chessmans.transform.position = getTileCenter(x, y); // gameview 改變目標chessmans的坐標(顯示上改變
+
     } //通用移動
+
+    public Vector3 generalMoveGetNewV3(Chessman chessmans, Vector2 newPos) {
+        int x = (int)newPos.x;
+        int y = (int)newPos.y;
+
+        Chessmans[ chessmans.CurrentX, chessmans.CurrentY ] = null; //清空Chessmans array裡的當前位置
+        chessmans.SetPosition(x, y); //gamemodel 改變目標chessmans的坐標(背景數值上改變
+        Chessmans[ x, y ] = chessmans; //安排Chessmans去array裡新的位置
+
+        return getTileCenter(x, y); // gameview 改變目標chessmans的坐標(顯示上改變
+    }
 
     public void moveChessman(int x, int y) //棋子移動
     {
@@ -299,6 +330,13 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(1, 4, 6);
 
                 spawnChessman(3, 5, 3);
+
+                spawnChessman(5, 2, 1);
+                spawnChessman(5, 2, 2);
+                spawnChessman(5, 2, 3);
+
+                spawnChessman(4, 0 , 0);
+                spawnChessman(6, 1, 0); //6 void
 
                 Debug.Log("test one");
                 break;
