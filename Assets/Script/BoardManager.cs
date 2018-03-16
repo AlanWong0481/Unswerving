@@ -324,19 +324,11 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(0, 3, 1);
 
                 spawnChessman(1, 2, 4);
+                spawnChessman(1, 4, 6);
 
                 spawnChessman(2, 2, 0);
 
-                spawnChessman(1, 4, 6);
-
                 spawnChessman(3, 5, 3);
-
-                spawnChessman(5, 2, 1);
-                spawnChessman(5, 2, 2);
-                spawnChessman(5, 2, 3);
-
-                spawnChessman(4, 0 , 0);
-                spawnChessman(6, 1, 0); //6 void
 
                 Debug.Log("test one");
                 break;
