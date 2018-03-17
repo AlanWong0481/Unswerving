@@ -14,6 +14,7 @@ public class Chessman : MonoBehaviour
     [HideInInspector]
     public int id;
     public int maxHealth;
+    [HideInInspector]
     public int health;
     public int damage;
     public int CurrentX { set; get; }
@@ -78,13 +79,14 @@ public class Chessman : MonoBehaviour
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            GetComponentInChildren<Animator>().SetTrigger("onLose");
             BoardManager.Instance.Chessmans[CurrentX, CurrentY] = null;
         }
     }
 
     public bool isMoving = false;
-    float moveNeedTime = 1;
+    float moveNeedTime = 0.5f;
     public Vector3 startV3;
     public Vector3 endV3;
     float lerpTime;

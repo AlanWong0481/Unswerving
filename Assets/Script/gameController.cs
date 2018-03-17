@@ -38,7 +38,9 @@ public class gameController : SingletonMonoBehavior<gameController> {
 
     public void DamageChassman(Chessman target) {
         target.health -= BoardManager.Instance.selectedChessman.damage;
-        Instantiate(gameView.instance.hitEnemyParticle, target.gameObject.transform.position, Quaternion.identity);
+        if (gameView.instance.hitEnemyParticle) {
+            Instantiate(gameView.instance.hitEnemyParticle, target.gameObject.transform.position, Quaternion.identity);
+        }
         damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.selectedChessman.damage, 0, target.gameObject.transform);
 
         target.healthChecker();
@@ -106,6 +108,12 @@ public class gameController : SingletonMonoBehavior<gameController> {
     }
 
     public void OnPlayerClickSkillButton() {
+        if (!BoardManager.Instance.selectedChessman) {
+            return;
+        }
+        if (BoardManager.Instance.selectedChessman.group != groupEnum.white) {
+            return;
+        }
         BoardManager.Instance.selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onSkill");
     }
 

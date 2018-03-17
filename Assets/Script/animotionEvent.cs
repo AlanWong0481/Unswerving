@@ -23,6 +23,7 @@ public class animotionEvent : MonoBehaviour {
     }
 
     public void skill() {
+        print(BoardManager.Instance.selectedChessman.id);
         switch (BoardManager.Instance.selectedChessman.id) {
             case 0:
                 attackSkill();
@@ -30,6 +31,13 @@ public class animotionEvent : MonoBehaviour {
             case 2:
                 healthSkill();
                 break;
+        }
+    }
+
+        
+    public void healParticle() {
+        if (gameView.instance.skillHealParticle) {
+            Instantiate(gameView.instance.skillHealParticle, BoardManager.Instance.selectedChessman.gameObject.transform.position, Quaternion.identity);
         }
     }
 
