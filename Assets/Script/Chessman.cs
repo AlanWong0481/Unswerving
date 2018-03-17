@@ -11,6 +11,9 @@ public enum groupEnum {
 
 public class Chessman : MonoBehaviour
 {
+    [HideInInspector]
+    public int id;
+    public int maxHealth;
     public int health;
     public int damage;
     public int CurrentX { set; get; }
@@ -28,6 +31,10 @@ public class Chessman : MonoBehaviour
 
     public void resetActionVal() {
         curActionVal = ActionVal;
+    }
+
+    public void resetHealthVal() {
+        health = maxHealth;
     }
 
     public void SetPosition(int x, int y)

@@ -44,6 +44,14 @@ public class gameController : SingletonMonoBehavior<gameController> {
         target.healthChecker();
     }
 
+    public void healthChassman(Chessman target) {
+        target.health += 10;
+        if (target.health > target.maxHealth) {
+            target.resetHealthVal();
+            damageDisplay.instance.spawnDamageDisplay(10, 3, target.gameObject.transform);
+        }
+    }
+
     public void OnPlayerSelectedChessmanRunOutActionVal() {
         print("你的角色已用盡體力");
         if (gameModel.instance.checkIsAllWhiteChessRunOutActionVal()) {
@@ -100,8 +108,6 @@ public class gameController : SingletonMonoBehavior<gameController> {
     public void OnPlayerClickSkillButton() {
         BoardManager.Instance.selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onSkill");
     }
-
-
 
     public void OnTriggerEnter(Collider other)
     {

@@ -311,6 +311,7 @@ public class BoardManager : MonoBehaviour {
         Chessmans[ x, y ] = go.GetComponent<Chessman>();
         Chessmans[ x, y ].SetPosition(x, y);
         activeChessman.Add(go);
+        Chessmans[ x, y ].id = index;
         Chessmans[ x, y ].init();
     }
 

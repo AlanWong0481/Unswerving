@@ -21,7 +21,9 @@ public class fingerControlRotation : SingletonMonoBehavior<fingerControlRotation
 	// Update is called once per frame
 	void Update () {
         LerpMove();
-        miniCameraTransform.rotation = transform.rotation;
+        if (miniCameraTransform) {
+            miniCameraTransform.rotation = transform.rotation;
+        }
         /*
         if (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width * 0.8)
         { // - 向上  + 向下
