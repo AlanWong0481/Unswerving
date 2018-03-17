@@ -6,6 +6,8 @@ public class gameView : SingletonMonoBehavior<gameView> {
 
     public GameObject hitEnemyParticle;
 
+    public GameObject skillHealParticle;
+
     public void init()
     {
 

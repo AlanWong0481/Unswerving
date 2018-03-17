@@ -89,6 +89,9 @@ public class BoardManager : MonoBehaviour {
             Chessman OverlappingChessman = checkOverlapping(new Vector2(x, y));
 
             if (OverlappingChessman) {
+                if (OverlappingChessman.group == groupEnum.white) {
+                    return;
+                }
                 if (OverlappingChessman.group == groupEnum.black) {
                     playerChessHitEnemy(OverlappingChessman);
                     return;
@@ -105,6 +108,7 @@ public class BoardManager : MonoBehaviour {
             gameView.instance.updateActonDisplay();
             //generalMove(selectedChessman, new Vector2(x, y));
             selectedChessman.startAutoMovement( generalMoveGetNewV3(selectedChessman, new Vector2(x, y)));
+
 
         }
 
@@ -312,6 +316,7 @@ public class BoardManager : MonoBehaviour {
         Chessmans[ x, y ] = go.GetComponent<Chessman>();
         Chessmans[ x, y ].SetPosition(x, y);
         activeChessman.Add(go);
+        Chessmans[ x, y ].id = index;
         Chessmans[ x, y ].init();
     }
 
