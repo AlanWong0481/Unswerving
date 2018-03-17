@@ -137,7 +137,7 @@ public class BoardManager : MonoBehaviour {
         Destroy(OverlappingChessman.gameObject);
 
         return;
-    } //
+    } //角色碰到物品
 
     public Chessman checkOverlapping(Vector2 v2) {
         foreach (var item in allChess) {
@@ -149,6 +149,7 @@ public class BoardManager : MonoBehaviour {
     } //檢查角色是否重疊
 
     public void OnPlayerFinishAttack() {
+
         if (selectedChessman.CurrentX == playerHitChessman.CurrentX + 1 && selectedChessman.CurrentY == playerHitChessman.CurrentY) {
             playerHitChessman.gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
         } else if (selectedChessman.CurrentX == playerHitChessman.CurrentX - 1 && selectedChessman.CurrentY == playerHitChessman.CurrentY) {
