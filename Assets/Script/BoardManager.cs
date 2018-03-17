@@ -202,8 +202,8 @@ public class BoardManager : MonoBehaviour {
 
     void closeActionMenu() {
         actionMenu.SetActive(false);
-        canvasScript.Static.openAttackButton = false;
-        canvasScript.Static.openMoveButton = false;
+        canvasScript.instance.openAttackButton = false;
+        canvasScript.instance.openMoveButton = false;
         status = "";
     } //關閉行動選單
 

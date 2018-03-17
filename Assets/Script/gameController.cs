@@ -51,6 +51,8 @@ public class gameController : SingletonMonoBehavior<gameController> {
         if (target.health > target.maxHealth) {
             target.resetHealthVal();
             damageDisplay.instance.spawnDamageDisplay(10, 3, target.gameObject.transform);
+            gameView.instance.updateHealthDisplay();
+
         }
     }
 

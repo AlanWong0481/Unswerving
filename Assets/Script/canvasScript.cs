@@ -1,19 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class canvasScript : MonoBehaviour {
-    public static canvasScript Static; //指定canvasScript為靜態
+using UnityEngine.UI;
+public class canvasScript : SingletonMonoBehavior<canvasScript> {
 
     public bool openMoveButton; //unity是會優先看public的內容
     public bool openAttackButton;
 
-    private void Awake()
-    {
-        Static = this;
-        Debug.Log(openMoveButton);
-    }
+    public Text hpText;
+    public Text spText;
+    public Image hpImage;
+    public Image spImage;
 
+    public void updateBarInformation() {
+        float maxhp = BoardManager.Instance.selectedChessman.maxHealth;
+        float hp = BoardManager.Instance.selectedChessman.health;
+        float maxsp = BoardManager.Instance.selectedChessman.ActionVal;
+        float sp = BoardManager.Instance.selectedChessman.curActionVal;
+
+        hpText.text = hp + " / " + maxhp;
+        spText.text = sp + " / " + maxsp;
+
+        float hpPercentage = hp / maxhp ;
+        float spPercentage = sp / maxsp ;
+        print("hpPercentage" + hpPercentage*100 + "%");
+        print("spPercentage" + spPercentage*100 + "%");
+
+    }
     public void moveButton()
     {
         openMoveButton = !openMoveButton; //偵測移動按鈕是開還是關
