@@ -82,6 +82,7 @@ public class Chessman : MonoBehaviour
             //Destroy(gameObject);
             GetComponentInChildren<Animator>().SetTrigger("onLose");
             BoardManager.Instance.Chessmans[CurrentX, CurrentY] = null;
+            Destroy(this);
         }
     }
 

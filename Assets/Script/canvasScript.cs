@@ -9,22 +9,45 @@ public class canvasScript : SingletonMonoBehavior<canvasScript> {
 
     public Text hpText;
     public Text spText;
-    public Image hpImage;
-    public Image spImage;
+
+    public Slider hpSlider;
+    public Slider spSlider;
+
+    public List<Image> playerImageList;
 
     public void updateBarInformation() {
+        foreach (var item in playerImageList) {
+            if (!item) {
+                continue;
+            }
+            item.gameObject.SetActive(false);
+        }
+        playerImageList[ BoardManager.Instance.selectedChessman.id ].gameObject.SetActive(true);
+
+        
+
         float maxhp = BoardManager.Instance.selectedChessman.maxHealth;
         float hp = BoardManager.Instance.selectedChessman.health;
         float maxsp = BoardManager.Instance.selectedChessman.ActionVal;
         float sp = BoardManager.Instance.selectedChessman.curActionVal;
 
-        //hpText.text = hp + " / " + maxhp;
-        //spText.text = sp + " / " + maxsp;
+
+        if (hp <= 0) {
+            playerImageList[ BoardManager.Instance.selectedChessman.id ].color = new Color(0.3f, 0.3f, 0.3f, 1);
+            hp =  0;
+        }
+
+
+        hpText.text = "HP : "+ hp + " / " + maxhp;
+        spText.text = "SP : "+ sp + " / " + maxsp;
 
         float hpPercentage = hp / maxhp ;
         float spPercentage = sp / maxsp ;
         print("hpPercentage" + hpPercentage*100 + "%");
         print("spPercentage" + spPercentage*100 + "%");
+
+        hpSlider.value = hpPercentage;
+        spSlider.value = spPercentage;
 
     }
     public void moveButton()
