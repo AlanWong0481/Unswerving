@@ -101,6 +101,7 @@ public class animotionEvent : MonoBehaviour {
         Chessman playerChessman = BoardManager.Instance.selectedChessman;
 
         playerChessman.health -= BoardManager.Instance.playerHitChessman.damage;
+        gameController.instance.thisRoundsPlayerTakeDamage = BoardManager.Instance.playerHitChessman.damage;
         damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.playerHitChessman.damage,1, playerChessman.gameObject.transform);
         gameView.instance.updateHealthDisplay();
         if (playerChessman.health <= 0) {

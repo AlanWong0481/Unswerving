@@ -64,6 +64,9 @@ public class BoardManager : MonoBehaviour {
             return;
         }
 
+        gameController.instance.thisRoundsPlayerTakeDamage = 0;
+        gameController.instance.thisRoundsPlayerTakeSp = 0;
+
         int x = selectedChessman.CurrentX;
         int y = selectedChessman.CurrentY;
         switch (dir) {
@@ -105,6 +108,7 @@ public class BoardManager : MonoBehaviour {
             }
 
             selectedChessman.curActionVal--;
+            gameController.instance.thisRoundsPlayerTakeSp = 1;
             gameView.instance.updateActonDisplay();
             //generalMove(selectedChessman, new Vector2(x, y));
             selectedChessman.startAutoMovement( generalMoveGetNewV3(selectedChessman, new Vector2(x, y)));
@@ -130,6 +134,7 @@ public class BoardManager : MonoBehaviour {
         selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack"); //SetTrigger在Animator是指提取Animator當中的變數。
 
         selectedChessman.curActionVal--;
+        gameController.instance.thisRoundsPlayerTakeSp = 1;
         gameView.instance.updateActonDisplay();
         return;
     } //角色攻擊敵人

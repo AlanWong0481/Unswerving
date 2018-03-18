@@ -31,6 +31,7 @@ public class canvasScript : SingletonMonoBehavior<canvasScript> {
         float maxsp = BoardManager.Instance.selectedChessman.ActionVal;
         float sp = BoardManager.Instance.selectedChessman.curActionVal;
 
+        float originalHp = hp;
 
         if (hp <= 0) {
             playerImageList[ BoardManager.Instance.selectedChessman.id ].color = new Color(0.3f, 0.3f, 0.3f, 1);
@@ -46,8 +47,9 @@ public class canvasScript : SingletonMonoBehavior<canvasScript> {
         print("hpPercentage" + hpPercentage*100 + "%");
         print("spPercentage" + spPercentage*100 + "%");
 
-        hpSlider.value = hpPercentage;
-        spSlider.value = spPercentage;
+        //hpSlider.value = hpPercentage;
+        //spSlider.value = spPercentage;
+        startLerp();
 
     }
     public void moveButton()
@@ -83,4 +85,44 @@ public class canvasScript : SingletonMonoBehavior<canvasScript> {
             BoardManager.Instance.selectedChessman = null;
         }
     } //攻擊按鈕
+
+    public bool isLerping = false;
+    float moveNeedTime = 0.5f;
+    public float startVar;
+    public float endVar;
+    public float startVar2;
+    public float endVar2;
+    float lerpTime;
+
+    public void startLerp() {
+        isLerping = true;
+        startVar = (float)gameController.instance.thisRoundsPlayerTakeDamage / (float)BoardManager.Instance.selectedChessman.maxHealth + (float)BoardManager.Instance.selectedChessman.health / (float)BoardManager.Instance.selectedChessman.maxHealth;
+        endVar = (float)BoardManager.Instance.selectedChessman.health / (float)BoardManager.Instance.selectedChessman.maxHealth;
+        startVar2 = (float)gameController.instance.thisRoundsPlayerTakeSp / (float)BoardManager.Instance.selectedChessman.ActionVal + (float)BoardManager.Instance.selectedChessman.curActionVal / (float)BoardManager.Instance.selectedChessman.ActionVal ;
+        print(startVar2 + "  "+ endVar2);
+        endVar2 = (float)BoardManager.Instance.selectedChessman.curActionVal / (float)BoardManager.Instance.selectedChessman.ActionVal;
+        lerpTime = 0;
+    }
+
+    public void endLerp() {
+        isLerping = false;
+    }
+
+    public void lerpMove() {
+        lerpTime += Time.deltaTime / moveNeedTime;
+        hpSlider.value = Mathf.Lerp(startVar, endVar, lerpTime);
+        spSlider.value = Mathf.Lerp(startVar2, endVar2, lerpTime);
+
+        if (lerpTime >= 1) {
+            endLerp();
+        }
+    }
+
+    private void Update() {
+        if (isLerping) {
+            lerpMove();
+        }
+    }
+
+
 }

@@ -8,6 +8,10 @@ public class gameController : SingletonMonoBehavior<gameController> {
 
     public GameObject winBox;
 
+    public int thisRoundsPlayerTakeDamage;
+    public int thisRoundsPlayerTakeSp;
+
+
     private void Start() {
         gameModel.instance.init();
         gameView.instance.init();
