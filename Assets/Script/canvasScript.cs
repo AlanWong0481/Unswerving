@@ -18,8 +18,8 @@ public class canvasScript : SingletonMonoBehavior<canvasScript> {
         float maxsp = BoardManager.Instance.selectedChessman.ActionVal;
         float sp = BoardManager.Instance.selectedChessman.curActionVal;
 
-        hpText.text = hp + " / " + maxhp;
-        spText.text = sp + " / " + maxsp;
+        //hpText.text = hp + " / " + maxhp;
+        //spText.text = sp + " / " + maxsp;
 
         float hpPercentage = hp / maxhp ;
         float spPercentage = sp / maxsp ;
