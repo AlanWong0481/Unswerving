@@ -187,14 +187,15 @@ public class BoardManager : MonoBehaviour {
             print(new Vector2(selectionX, selectionY));
 
             if (selectionX >= 0 && selectionY >= 0) {
-                selectedChessman = Chessmans[ selectionX, selectionY ];
-                if (!selectedChessman) {
+                if (!Chessmans[ selectionX, selectionY ]) {
                     return;
                 }
-                if (selectedChessman.group != groupEnum.white) {
+                if (Chessmans[ selectionX, selectionY ].group != groupEnum.white) {
                     //選擇對象不是白方
                     return;
                 }
+                selectedChessman = Chessmans[ selectionX, selectionY ];
+
                 gameView.instance.showupPlayerSelectWhatChessman();
             }
         }
