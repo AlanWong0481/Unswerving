@@ -11,6 +11,7 @@ public class gameController : SingletonMonoBehavior<gameController> {
     public int thisRoundsPlayerTakeDamage;
     public int thisRoundsPlayerTakeSp;
 
+    public bool isPlayerOverTheFingerControl = false;
 
     private void Start() {
         gameModel.instance.init();
@@ -55,8 +56,9 @@ public class gameController : SingletonMonoBehavior<gameController> {
         if (target.health > target.maxHealth) {
             target.resetHealthVal();
             damageDisplay.instance.spawnDamageDisplay(10, 3, target.gameObject.transform);
-            gameView.instance.updateHealthDisplay();
-
+            if (target == BoardManager.Instance.selectedChessman) {
+                gameView.instance.updateHealthDisplay();
+            }
         }
     }
 
@@ -120,6 +122,18 @@ public class gameController : SingletonMonoBehavior<gameController> {
         if (BoardManager.Instance.selectedChessman.group != groupEnum.white) {
             return;
         }
+
+        print("OnPlayerClickSkillButton");
+
+        int spCost = 10;
+        if (BoardManager.Instance.selectedChessman.curActionVal < spCost) {
+            return;
+        }
+
+        BoardManager.Instance.selectedChessman.curActionVal -= spCost;
+        gameController.instance.thisRoundsPlayerTakeSp = spCost;
+        gameView.instance.updateActonDisplay();
+        gameView.instance.cameraZoomIn();
         BoardManager.Instance.selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onSkill");
     }
 
