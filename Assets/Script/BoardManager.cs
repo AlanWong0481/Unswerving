@@ -64,6 +64,8 @@ public class BoardManager : MonoBehaviour {
             return;
         }
 
+        
+
         gameController.instance.thisRoundsPlayerTakeDamage = 0;
         gameController.instance.thisRoundsPlayerTakeSp = 0;
 
@@ -180,6 +182,9 @@ public class BoardManager : MonoBehaviour {
 
     void MouseButtonDownAction() {
         if (inAttack) {
+            return;
+        }
+        if (gameController.instance.isPlayerOverTheFingerControl) {
             return;
         }
 

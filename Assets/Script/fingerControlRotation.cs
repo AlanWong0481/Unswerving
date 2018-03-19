@@ -22,7 +22,7 @@ public class fingerControlRotation : SingletonMonoBehavior<fingerControlRotation
 	void Update () {
         LerpMove();
         if (miniCameraTransform) {
-            miniCameraTransform.rotation = transform.rotation;
+            miniCameraTransform.rotation = Quaternion.Euler(0,0, transform.rotation.eulerAngles.y); ;
         }
         /*
         if (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width * 0.8)
