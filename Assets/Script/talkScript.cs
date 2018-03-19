@@ -21,7 +21,7 @@ public class talkScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && counter < textArray.Count - 1) //右鍵繼續
+        if (Input.GetMouseButtonDown(0) && counter < textArray.Count - 1) //左鍵繼續
         {
             counter++;
             textDataBase(counter);
