@@ -1353,7 +1353,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.9156327
+      - time: 0.6621765
         functionName: playerAttack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 626d962146505764bb8c64282825d8d2,
@@ -1473,8 +1473,6 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
