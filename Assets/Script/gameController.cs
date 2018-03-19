@@ -18,9 +18,13 @@ public class gameController : SingletonMonoBehavior<gameController> {
         gameView.instance.init();
         init();
     }
-    private void Update()
-    {
+
+    private void Update() {
         testFunction();
+        if (gameView.instance.chessmanLerpMove != null && gameView.instance.chessmanLerpMove.isLerping) {
+            BoardManager.Instance.selectedChessman.gameObject.transform.position = gameView.instance.chessmanLerpMove.update();
+        }
+
     }
 
     public void testFunction() {
@@ -30,6 +34,8 @@ public class gameController : SingletonMonoBehavior<gameController> {
                     OnPlayerReadyToDropDownCards();
                     break;
                 case "W":
+                    print("MOVE");
+                    gameView.instance.lerpMoveTest.startLerp(new Vector3(),new Vector3(1,1,1),1.0f );
                     break;
                 case "E":
                     break;

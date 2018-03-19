@@ -8,10 +8,9 @@ public class gameView : SingletonMonoBehavior<gameView> {
 
     public GameObject skillHealParticle;
 
+     public chessmanLerpMove chessmanLerpMove;
 
-
-    public void init()
-    {
+    public void init() {
 
     }
 
@@ -40,8 +39,8 @@ public class gameView : SingletonMonoBehavior<gameView> {
         print("你選擇了" + gameModel.instance.getCurrentChessmaName() + "他的血量值有" + healthval + " 他的攻擊值有" + attackval + "  他的移動值有" + Actionval);
     }
 
-    public Vector3 orlCamPos;
-    public Quaternion orlCamRotation;
+    Vector3 orlCamPos;
+    Quaternion orlCamRotation;
 
     public void cameraZoomIn() {
         Transform cameraTs = Camera.main.gameObject.transform;
@@ -52,8 +51,8 @@ public class gameView : SingletonMonoBehavior<gameView> {
         Vector3 startVar = new Vector3(cameraTs.position.x, 1.75f, cameraTs.position.z);
         Quaternion startVar2 = getObjectModelLookAtRotation(startVar, BoardManager.Instance.selectedChessman.gameObject.transform.position);
         startVar += (startVar2 * Vector3.forward);
-
-        startLerp(orlCamPos,orlCamRotation,startVar,startVar2);
+        lerpMoveTest.startLerp(orlCamPos,startVar,curve,moveNeedTime);
+        quaternionTest.startLerp(orlCamRotation, startVar2, curve, moveNeedTime);
     }
 
     public void reductionCamera() {
@@ -62,56 +61,49 @@ public class gameView : SingletonMonoBehavior<gameView> {
         Vector3 nowCamPos = cameraTs.position;
         Quaternion nowCamRotation = cameraTs.rotation;
 
-        startLerp(nowCamPos, nowCamRotation, orlCamPos, orlCamRotation);
-
+        lerpMoveTest.startLerp(nowCamPos, orlCamPos, curve, moveNeedTime);
+        quaternionTest.startLerp(nowCamRotation, orlCamRotation, curve, moveNeedTime);
     }
 
-    public bool isLerping = false;
-    float moveNeedTime = 0.5f;
-    public Vector3 startVar;
-    public Quaternion startVar2;
+    float moveNeedTime = 1f;
+    public AnimationCurve curve;
 
-    public Vector3 endVar;
-    public Quaternion endVar2;
-    float lerpTime;
+    Vector3 startVar;
+    Quaternion startVar2;
 
-    public void startLerp(Vector3 startV3,Quaternion startRotaion,Vector3 endV3, Quaternion endRotaion) {
-        if (isLerping) {
-            return;
-        }
-        isLerping = true;
-        startVar = startV3;
-        startVar2 = startRotaion;
-
-        endVar = endV3;
-        endVar2 = endRotaion;
-        lerpTime = 0;
-    }
-
-    public void endLerp() {
-        isLerping = false;
-    }
-
-    public void lerpMove(Transform cameraTs) {
-        lerpTime += Time.deltaTime / moveNeedTime;
-
-        cameraTs.position = Vector3.Slerp(startVar,endVar,lerpTime);
-        cameraTs.rotation = Quaternion.Slerp(startVar2,endVar2,lerpTime);
-
-        if (lerpTime >= 1) {
-            endLerp();
-        }
-    }
+    Vector3 endVar;
+    Quaternion endVar2;
 
     public Quaternion getObjectModelLookAtRotation(Vector3 objPos, Vector3 lookAtPoint) {
         Vector3 relativePos = lookAtPoint - objPos;
         return Quaternion.LookRotation(relativePos);
     }
 
+    public vector3Lerp lerpMoveTest = new vector3Lerp();
+    public QuaternionLerp quaternionTest = new QuaternionLerp();
+
     private void Update() {
-        if (isLerping) {
-            print("fo");
-            lerpMove(Camera.main.gameObject.transform);
+        if (lerpMoveTest.isLerping) {
+            Transform cameraTs = Camera.main.gameObject.transform;
+            cameraTs.position = lerpMoveTest.update();
+            cameraTs.rotation = quaternionTest.update();
         }
+    }
+}
+public class chessmanLerpMove : vector3Lerp {
+    int X;
+    int Y;
+    public chessmanLerpMove(int x, int y) {
+        X = x;
+        Y = y;
+    }
+
+    public override void startExtraCode() {
+        BoardManager.Instance.Chessmans[ X, Y ].gameObject.GetComponentInChildren<Animator>().SetBool("onWalk", isLerping);
+        gameModel.instance.playerInMovingAni = isLerping;
+    }
+    public override void endExtraCode() {
+        BoardManager.Instance.Chessmans[ X, Y ].gameObject.GetComponentInChildren<Animator>().SetBool("onWalk", isLerping);
+        gameModel.instance.playerInMovingAni = isLerping;
     }
 }

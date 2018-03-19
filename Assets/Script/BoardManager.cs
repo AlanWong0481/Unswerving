@@ -113,7 +113,8 @@ public class BoardManager : MonoBehaviour {
             gameController.instance.thisRoundsPlayerTakeSp = 1;
             gameView.instance.updateActonDisplay();
             //generalMove(selectedChessman, new Vector2(x, y));
-            selectedChessman.startAutoMovement( generalMoveGetNewV3(selectedChessman, new Vector2(x, y)));
+            gameView.instance.chessmanLerpMove = new chessmanLerpMove(x,y);
+            gameView.instance.chessmanLerpMove.startLerp(selectedChessman.gameObject.transform.position, generalMoveGetNewV3(selectedChessman, new Vector2(x, y)),0.5f);
 
 
         }
