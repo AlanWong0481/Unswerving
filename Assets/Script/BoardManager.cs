@@ -126,7 +126,7 @@ public class BoardManager : MonoBehaviour {
             return true;
         }
         return false;
-    }
+    } //是否在場地大小內
 
     public Chessman playerHitChessman;
     public bool inAttack = false;
@@ -347,6 +347,39 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(2, 2, 0);
 
                 spawnChessman(3, 5, 3);
+
+                spawnChessman(4, 0, 2);
+                spawnChessman(4, 0, 3);
+                spawnChessman(4, 0, 5);
+                spawnChessman(4, 1, 6);
+                spawnChessman(4, 4, 5);
+                spawnChessman(4, 4, 7);
+                spawnChessman(4, 5, 8);
+
+                spawnChessman(5, 0, 0);
+                spawnChessman(5, 0, 1);
+                spawnChessman(5, 0, 8);
+                spawnChessman(5, 0, 9);
+                spawnChessman(5, 1, 0);
+                spawnChessman(5, 1, 1);
+                spawnChessman(5, 1, 9);
+                spawnChessman(5, 3, 2);
+                spawnChessman(5, 3, 3);
+                spawnChessman(5, 4, 0);
+                spawnChessman(5, 4, 1);
+                spawnChessman(5, 4, 2);
+                spawnChessman(5, 5, 4);
+                spawnChessman(5, 5, 9);
+                spawnChessman(5, 6, 4);
+                spawnChessman(5, 6, 9);
+
+                spawnChessman(6, 1, 2);
+                spawnChessman(6, 1, 3);
+                spawnChessman(6, 1, 5);
+                spawnChessman(6, 2, 6);
+                spawnChessman(6, 5, 5);
+                spawnChessman(6, 5, 7);
+                spawnChessman(6, 5, 8);
 
                 Debug.Log("test one");
                 break;
