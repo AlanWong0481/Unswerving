@@ -342,7 +342,7 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(0, 3, 1);
 
                 spawnChessman(1, 2, 4);
-                spawnChessman(1, 4, 6);
+                spawnChessman(1, 3, 6);
 
                 spawnChessman(2, 2, 0);
 
