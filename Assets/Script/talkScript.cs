@@ -65,8 +65,8 @@ public class talkScript : MonoBehaviour
     public enum character {
         Narration,
         warrior,
-        priest
-        
+        priest,
+        knight,
     }
 
     [System.Serializable]
