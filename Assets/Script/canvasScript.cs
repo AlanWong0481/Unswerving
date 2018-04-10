@@ -95,14 +95,13 @@ public class canvasScript : SingletonMonoBehavior<canvasScript> {
     float lerpTime;
 
     public void startLerp() {
-        if (isLerping) {
-            return;
-        }
         isLerping = true;
         startVar = (float)gameController.instance.thisRoundsPlayerTakeDamage / (float)BoardManager.Instance.selectedChessman.maxHealth + (float)BoardManager.Instance.selectedChessman.health / (float)BoardManager.Instance.selectedChessman.maxHealth;
+        hpSlider.value = startVar;
         endVar = (float)BoardManager.Instance.selectedChessman.health / (float)BoardManager.Instance.selectedChessman.maxHealth;
         startVar2 = (float)gameController.instance.thisRoundsPlayerTakeSp / (float)BoardManager.Instance.selectedChessman.ActionVal + (float)BoardManager.Instance.selectedChessman.curActionVal / (float)BoardManager.Instance.selectedChessman.ActionVal ;
-        endVar2 = (float)BoardManager.Instance.selectedChessman.curActionVal / (float)BoardManager.Instance.selectedChessman.ActionVal;
+        spSlider.value = startVar2;
+       endVar2 = (float)BoardManager.Instance.selectedChessman.curActionVal / (float)BoardManager.Instance.selectedChessman.ActionVal;
         lerpTime = 0;
     }
 

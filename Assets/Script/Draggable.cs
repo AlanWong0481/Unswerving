@@ -17,6 +17,7 @@ public class Draggable : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHa
     public void OnBeginDrag(PointerEventData eventData)
     {
         gameController.instance.OnPlayerPickUpCards(this);
+        gameModel.instance.inPlayerDragSomeCard = true;
         Debug.Log("OnBeginDrag");
 
         parentToReturnTo = this.transform.parent;
@@ -32,7 +33,7 @@ public class Draggable : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHa
     public virtual void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("OnEndDrag");
-        
-        //this.transform.SetParent( parentToReturnTo );
+        gameModel.instance.inPlayerDragSomeCard = false;
+        this.transform.SetParent( parentToReturnTo );
     }
 }

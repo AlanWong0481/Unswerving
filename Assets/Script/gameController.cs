@@ -49,9 +49,7 @@ public class gameController : SingletonMonoBehavior<gameController> {
 
     public void DamageChassman(Chessman target) {
         target.health -= BoardManager.Instance.selectedChessman.damage;
-        if (gameView.instance.hitEnemyParticle) {
-            Instantiate(gameView.instance.hitEnemyParticle, target.gameObject.transform.position, Quaternion.identity);
-        }
+        
         damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.selectedChessman.damage, 0, target.gameObject.transform);
 
         target.healthChecker();

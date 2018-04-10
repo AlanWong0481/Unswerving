@@ -8,6 +8,8 @@ public class gameView : SingletonMonoBehavior<gameView> {
 
     public GameObject skillHealParticle;
 
+    public GameObject skillAttackParticle;
+
      public chessmanLerpMove chessmanLerpMove;
 
     public void init() {

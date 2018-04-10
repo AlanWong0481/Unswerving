@@ -13,6 +13,8 @@ public class gameModel : SingletonMonoBehavior<gameModel> {
 
     public Draggable selectedCards;
 
+    public bool inPlayerDragSomeCard;
+
     public void init() {
         initCost();
     }

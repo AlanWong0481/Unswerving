@@ -9,6 +9,13 @@ public class animotionEvent : MonoBehaviour {
         Chessman enemy = BoardManager.Instance.playerHitChessman;
 
         enemy.health -= BoardManager.Instance.selectedChessman.damage;
+
+        /*
+         if (gameView.instance.hitEnemyParticle) {
+            Instantiate(gameView.instance.hitEnemyParticle, target.gameObject.transform.position, Quaternion.identity);
+        }
+         */
+
         if (gameView.instance.hitEnemyParticle) {
             Instantiate(gameView.instance.hitEnemyParticle, enemy.gameObject.transform.position, Quaternion.identity);
         }
@@ -53,6 +60,9 @@ public class animotionEvent : MonoBehaviour {
         attackV2List.Add(new Vector2(v2.x - 1, v2.y + 1));
         attackV2List.Add(new Vector2(v2.x, v2.y + 1));
         attackV2List.Add(new Vector2(v2.x + 1, v2.y + 1));
+        if (gameView.instance.skillAttackParticle) {
+            Instantiate(gameView.instance.skillAttackParticle, BoardManager.Instance.selectedChessman.gameObject.transform.position, Quaternion.identity);
+        }
 
         foreach (var item in attackV2List) {
             int x = (int)item.x;
@@ -66,6 +76,7 @@ public class animotionEvent : MonoBehaviour {
             if (BoardManager.Instance.Chessmans[ x, y ].group == groupEnum.black) {
                 //attackable
                 gameController.instance.DamageChassman(BoardManager.Instance.Chessmans[ x, y ]);
+                
             }
         }
     }
