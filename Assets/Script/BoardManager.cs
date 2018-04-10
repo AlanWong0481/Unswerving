@@ -337,8 +337,6 @@ public class BoardManager : MonoBehaviour {
         activeChessman = new List<GameObject>();
         Chessmans = new Chessman[ 7, 10 ];
 
-
-        //
         switch (Datebase.instance.sceneLevel) {
             case 0:
                 spawnChessman(0, 3, 1);
@@ -348,7 +346,6 @@ public class BoardManager : MonoBehaviour {
 
                 spawnChessman(2, 2, 0);
 
-                spawnChessman(3, 4, 3);
                 spawnChessman(3, 5, 3);
 
                 spawnChessman(4, 0, 2);
@@ -399,8 +396,7 @@ public class BoardManager : MonoBehaviour {
 
                 spawnChessman(2, 3, 0);
 
-                spawnChessman(3, 3, 2);
-
+                spawnChessman(3, 3, 5);
 
                 spawnChessman(4, 4, 6);
                 spawnChessman(6, 5, 6);
