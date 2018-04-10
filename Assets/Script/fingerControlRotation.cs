@@ -18,8 +18,13 @@ public class fingerControlRotation : SingletonMonoBehavior<fingerControlRotation
 
     float onPressFloat;
 
-	// Update is called once per frame
-	void Update () {
+    private void Start() {
+        miniCameraTransform =  GameObject.FindGameObjectWithTag("moveButton").transform;
+
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (gameModel.instance.inPlayerDragSomeCard) {
             return;
         }
