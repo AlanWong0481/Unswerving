@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 public class Draggable : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHandler
 {
     Camera myCamera;
-    public Transform parentToReturnTo = null;
+    //public Transform parentToReturnTo = null;
+    public Vector2 begainDragV2;
 
     public int cost;
 
@@ -16,12 +17,13 @@ public class Draggable : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHa
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        begainDragV2 = GetComponent<RectTransform>().anchoredPosition;
         gameController.instance.OnPlayerPickUpCards(this);
         gameModel.instance.inPlayerDragSomeCard = true;
         Debug.Log("OnBeginDrag");
 
-        parentToReturnTo = this.transform.parent;
-        this.transform.SetParent(this.transform.parent.parent);
+        //parentToReturnTo = this.transform.parent;
+        //this.transform.SetParent(this.transform.parent.parent);
     }
 
    public void OnDrag(PointerEventData eventData)
@@ -32,8 +34,7 @@ public class Draggable : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHa
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
+        GetComponent<RectTransform>().anchoredPosition = begainDragV2;
         gameModel.instance.inPlayerDragSomeCard = false;
-        this.transform.SetParent( parentToReturnTo );
     }
 }

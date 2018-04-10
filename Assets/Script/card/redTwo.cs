@@ -9,7 +9,7 @@ public class redTwo : Draggable, IBeginDragHandler, IDragHandler, IEndDragHandle
     public override void OnEndDrag(PointerEventData eventData)
     {
         gameController.instance.OnPlayerReadyToDropDownCards();
-        this.transform.SetParent(parentToReturnTo);
+        //this.transform.SetParent(parentToReturnTo);
         if (!gameModel.instance.checkCostCanBeDeduct(cost)) {
             //out
             return;

@@ -9,7 +9,7 @@ public class red : Draggable, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         Debug.Log("red here");
         gameController.instance.OnPlayerReadyToDropDownCards();
-        this.transform.SetParent(parentToReturnTo);
+        //this.transform.SetParent(parentToReturnTo);
         if (!gameModel.instance.checkCostCanBeDeduct(cost)) {
             //out
             return;

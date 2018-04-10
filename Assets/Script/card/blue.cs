@@ -8,7 +8,7 @@ public class blue : Draggable, IBeginDragHandler, IDragHandler, IEndDragHandler
     public override void OnEndDrag(PointerEventData eventData) {
         Debug.Log("blue here");
         gameController.instance.OnPlayerReadyToDropDownCards();
-        this.transform.SetParent(parentToReturnTo);
+        //this.transform.SetParent(parentToReturnTo);
         if (!gameModel.instance.checkCostCanBeDeduct(cost)) {
             //out
             return;
