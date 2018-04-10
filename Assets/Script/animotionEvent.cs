@@ -7,24 +7,22 @@ public class animotionEvent : MonoBehaviour {
 	public void playerAttack() {
         print("playerAttack");
         Chessman enemy = BoardManager.Instance.playerHitChessman;
+        if (gameView.instance.hitEnemyParticle) {
+            Instantiate(gameView.instance.hitEnemyParticle, enemy.gameObject.transform.position, Quaternion.identity);
+        }
+        gameController.instance.DamageChassman(enemy, BoardManager.Instance.selectedChessman.damage);
 
-        enemy.health -= BoardManager.Instance.selectedChessman.damage;
-
+        if (enemy.health <= 0) {
+            BoardManager.Instance.inAttack = false;
+        }
         /*
          if (gameView.instance.hitEnemyParticle) {
             Instantiate(gameView.instance.hitEnemyParticle, target.gameObject.transform.position, Quaternion.identity);
         }
          */
+        //enemy.GetComponentInChildren<animotionEvent>().hit();
 
-        if (gameView.instance.hitEnemyParticle) {
-            Instantiate(gameView.instance.hitEnemyParticle, enemy.gameObject.transform.position, Quaternion.identity);
-        }
-        damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.selectedChessman.damage, 0, enemy.gameObject.transform);
-
-        if (enemy.health <= 0) {
-            BoardManager.Instance.inAttack = false;
-        }
-        enemy.healthChecker();
+        //damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.selectedChessman.damage, 0, enemy.gameObject.transform);
 
         BoardManager.Instance.OnPlayerFinishAttack();
     }
@@ -75,7 +73,7 @@ public class animotionEvent : MonoBehaviour {
             }
             if (BoardManager.Instance.Chessmans[ x, y ].group == groupEnum.black) {
                 //attackable
-                gameController.instance.DamageChassman(BoardManager.Instance.Chessmans[ x, y ]);
+                gameController.instance.DamageChassman(BoardManager.Instance.Chessmans[ x, y ], BoardManager.Instance.selectedChessman.skillDamage);
                 
             }
         }
@@ -111,18 +109,22 @@ public class animotionEvent : MonoBehaviour {
 
     public void hit() {
         Chessman thisChessman = transform.parent.parent.gameObject.GetComponent<Chessman>();
+        //GetComponent<Animator>().SetTrigger("onGetHit");
+        
         if (thisChessman.group == groupEnum.white) {
-
+            Chessman playerChessman = BoardManager.Instance.playerHitChessman;
+            playerChessman.gameObject.GetComponentInChildren<Animator>().SetTrigger("onGetHit");
         } else {
             Chessman playerChessman = BoardManager.Instance.selectedChessman;
             playerChessman.gameObject.GetComponentInChildren<Animator>().SetTrigger("onGetHit");
         }
-
+        
     }
 
     public void enemyAttack() {
+        print("dosadjlk");
         Chessman playerChessman = BoardManager.Instance.selectedChessman;
-
+        //playerChessman.GetComponentInChildren<animotionEvent>().hit();
         playerChessman.health -= BoardManager.Instance.playerHitChessman.damage;
         gameController.instance.thisRoundsPlayerTakeDamage = BoardManager.Instance.playerHitChessman.damage;
         damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.playerHitChessman.damage,1, playerChessman.gameObject.transform);

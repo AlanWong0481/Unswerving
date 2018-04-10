@@ -17,6 +17,7 @@ public class Chessman : MonoBehaviour
     [HideInInspector]
     public int health;
     public int damage;
+    public int skillDamage;
     public int CurrentX { set; get; }
     public int CurrentY { set; get; }
     public groupEnum group;

@@ -47,10 +47,10 @@ public class gameController : SingletonMonoBehavior<gameController> {
 
     }
 
-    public void DamageChassman(Chessman target) {
-        target.health -= BoardManager.Instance.selectedChessman.damage;
+    public void DamageChassman(Chessman target , int damage) {
+        target.health -=damage;
         
-        damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.selectedChessman.damage, 0, target.gameObject.transform);
+        damageDisplay.instance.spawnDamageDisplay(damage, 0, target.gameObject.transform);
 
         target.healthChecker();
     }
