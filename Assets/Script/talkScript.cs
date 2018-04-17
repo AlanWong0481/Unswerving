@@ -8,6 +8,7 @@ public class talkScript : MonoBehaviour
     Text uiText;
     public Image charImage; //人物立繪
     public Image charImageTwo;
+    public Image charImageThree;
     public Image talkImage; //對話框背景
 
     int counter = -1;
@@ -50,7 +51,9 @@ public class talkScript : MonoBehaviour
                 charImage.color = new Color(color, color, color, color);
                 charImageTwo.color = new Color(1, 1, 1, 1);
                 break;
-            default:
+            case character.knight:
+                charImage.color = new Color(color, color, color, color);
+                charImageTwo.color = new Color(1, 1, 1, 1);
                 break;
         }
 
@@ -58,6 +61,7 @@ public class talkScript : MonoBehaviour
         {
             charImage.gameObject.SetActive(false);
             charImageTwo.gameObject.SetActive(false);
+            charImageThree.gameObject.SetActive(false);
             talkImage.gameObject.SetActive(false);
         }
     }
