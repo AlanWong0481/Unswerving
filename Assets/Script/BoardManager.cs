@@ -191,7 +191,6 @@ public class BoardManager : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0)) {
             print(new Vector2(selectionX, selectionY));
-
             if (selectionX >= 0 && selectionY >= 0) {
                 if (!Chessmans[ selectionX, selectionY ]) {
                     return;
@@ -380,6 +379,8 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(6, 5, 5);
                 spawnChessman(6, 5, 7);
                 spawnChessman(6, 5, 8);
+
+                spawnChessman(7,5,7);
 
                 Debug.Log("test one");
                 break;

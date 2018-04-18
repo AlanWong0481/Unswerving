@@ -35,15 +35,42 @@ public class animotionEvent : MonoBehaviour {
             case 2:
                 healthSkill();
                 break;
+            case 3:
+                break;
         }
-
-        gameView.instance.reductionCamera();
+        //gameView.instance.reductionCamera();
     }
 
         
     public void healParticle() {
         if (gameView.instance.skillHealParticle) {
             Instantiate(gameView.instance.skillHealParticle, BoardManager.Instance.selectedChessman.gameObject.transform.position, Quaternion.identity);
+        }
+    }
+
+    public void defUpSkill() {
+        Vector2 v2 = new Vector2(BoardManager.Instance.selectedChessman.CurrentX, BoardManager.Instance.selectedChessman.CurrentY);
+        List<Vector2> defV2List = new List<Vector2>();
+        defV2List.Add(new Vector2(v2.x - 1, v2.y - 1));
+        defV2List.Add(new Vector2(v2.x, v2.y - 1));
+        defV2List.Add(new Vector2(v2.x + 1, v2.y - 1));
+        defV2List.Add(new Vector2(v2.x - 1, v2.y));
+        defV2List.Add(new Vector2(v2.x + 1, v2.y));
+        defV2List.Add(new Vector2(v2.x - 1, v2.y + 1));
+        defV2List.Add(new Vector2(v2.x, v2.y + 1));
+        defV2List.Add(new Vector2(v2.x + 1, v2.y + 1));
+        foreach (var item in defV2List) {
+            int x = (int)item.x;
+            int y = (int)item.y;
+            if (!BoardManager.Instance.isInBoardRange(x, y)) {
+                continue;
+            }
+            if (!BoardManager.Instance.Chessmans[ x, y ]) {
+                continue;
+            }
+            if (BoardManager.Instance.Chessmans[ x, y ].group == groupEnum.white) {
+                BoardManager.Instance.Chessmans[ x, y ].def += 5;
+            }
         }
     }
 
@@ -110,7 +137,6 @@ public class animotionEvent : MonoBehaviour {
     public void hit() {
         Chessman thisChessman = transform.parent.parent.gameObject.GetComponent<Chessman>();
         //GetComponent<Animator>().SetTrigger("onGetHit");
-        
         if (thisChessman.group == groupEnum.white) {
             Chessman playerChessman = BoardManager.Instance.playerHitChessman;
             playerChessman.gameObject.GetComponentInChildren<Animator>().SetTrigger("onGetHit");
@@ -118,14 +144,17 @@ public class animotionEvent : MonoBehaviour {
             Chessman playerChessman = BoardManager.Instance.selectedChessman;
             playerChessman.gameObject.GetComponentInChildren<Animator>().SetTrigger("onGetHit");
         }
-        
     }
 
     public void enemyAttack() {
         print("dosadjlk");
         Chessman playerChessman = BoardManager.Instance.selectedChessman;
         //playerChessman.GetComponentInChildren<animotionEvent>().hit();
-        playerChessman.health -= BoardManager.Instance.playerHitChessman.damage;
+        if (playerChessman.def > 0) {
+            playerChessman.def -= BoardManager.Instance.playerHitChessman.damage;
+        } else {
+            playerChessman.health -= BoardManager.Instance.playerHitChessman.damage;
+        }
         gameController.instance.thisRoundsPlayerTakeDamage = BoardManager.Instance.playerHitChessman.damage;
         damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.playerHitChessman.damage,1, playerChessman.gameObject.transform);
 

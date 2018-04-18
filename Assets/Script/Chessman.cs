@@ -13,10 +13,12 @@ public class Chessman : MonoBehaviour
 {
     [HideInInspector]
     public int id;
+    
     public int maxHealth;
-    [HideInInspector]
+    //[HideInInspector]
     public int health;
     public int damage;
+    public int def;
     public int skillDamage;
     public int CurrentX { set; get; }
     public int CurrentY { set; get; }
@@ -29,6 +31,7 @@ public class Chessman : MonoBehaviour
 
     public void init() {
         resetActionVal();
+        resetHealthVal();
     }
 
     public void resetActionVal() {
@@ -85,6 +88,14 @@ public class Chessman : MonoBehaviour
             BoardManager.Instance.Chessmans[CurrentX, CurrentY] = null;
             Destroy(this);
         }
+    }
+
+    public void defBuffUp() {
+
+    }
+
+    public void defBuffDown() {
+
     }
 
     public bool isMoving = false;

@@ -10,12 +10,16 @@ public class canvasScript : SingletonMonoBehavior<canvasScript> {
     public Text hpText;
     public Text spText;
 
+    public Text atkText;
+    public Text defText;
+
     public Slider hpSlider;
     public Slider spSlider;
 
     public List<Image> playerImageList;
 
     public void updateBarInformation() {
+        print("updateBarInformation");
         foreach (var item in playerImageList) {
             if (!item) {
                 continue;
@@ -31,6 +35,9 @@ public class canvasScript : SingletonMonoBehavior<canvasScript> {
         float maxsp = BoardManager.Instance.selectedChessman.ActionVal;
         float sp = BoardManager.Instance.selectedChessman.curActionVal;
 
+        int atk = BoardManager.Instance.selectedChessman.damage;
+        int def = BoardManager.Instance.selectedChessman.def;
+
         float originalHp = hp;
 
         if (hp <= 0) {
@@ -41,6 +48,9 @@ public class canvasScript : SingletonMonoBehavior<canvasScript> {
 
         hpText.text = "HP : "+ hp + " / " + maxhp;
         spText.text = "SP : "+ sp + " / " + maxsp;
+
+        atkText.text = atk.ToString();
+        defText.text = def.ToString();
 
         float hpPercentage = hp / maxhp ;
         float spPercentage = sp / maxsp ;

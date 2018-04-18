@@ -41,7 +41,9 @@ public class talkScript : MonoBehaviour
             case character.Narration:
                 charImage.color = new Color(1, 1, 1, color);
                 charImageTwo.color = new Color(1, 1, 1, color);
-                charImageThree.color = new Color(1, 1, 1, color);
+                if (charImageThree) {
+                    charImageThree.color = new Color(1, 1, 1, color);
+                }
                 break;
             case character.warrior:
                 charImage.color = new Color(1, 1, 1, 1);
@@ -62,7 +64,9 @@ public class talkScript : MonoBehaviour
         {
             charImage.gameObject.SetActive(false);
             charImageTwo.gameObject.SetActive(false);
-            charImageThree.gameObject.SetActive(false);
+            if (charImageThree) {
+                charImageThree.gameObject.SetActive(false);
+            }
             talkImage.gameObject.SetActive(false);
         }
     }

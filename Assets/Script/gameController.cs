@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class gameController : SingletonMonoBehavior<gameController> {
+    delegate void roundDG();
+    roundDG roundDelegate;
 
     public GameObject Poison;
 

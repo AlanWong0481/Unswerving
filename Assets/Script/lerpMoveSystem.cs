@@ -54,6 +54,7 @@ public abstract class lerpMoveSystem<T> {
     bool _isLerping = false;
     float moveNeedTime = 0f;
     float lerpTime;
+    float _curvedValue;
     public delegate void lerpMoveDelegate();
     lerpMoveDelegate onStartDg;
     lerpMoveDelegate onEndDg;
@@ -61,6 +62,8 @@ public abstract class lerpMoveSystem<T> {
 
     T startVar;
     T endVar;
+
+
     public bool isLerping {
         get {
             return _isLerping;
@@ -134,7 +137,7 @@ public abstract class lerpMoveSystem<T> {
 
     void endLerp() {
         _isLerping = false;
-     
+
         endExtraCode();
 
         if (onEndDg != null) {
@@ -154,13 +157,13 @@ public abstract class lerpMoveSystem<T> {
         T outPutData;
 
         lerpTime += Time.deltaTime / moveNeedTime;
-        float curvedValue = lerpTime;
+        _curvedValue = lerpTime;
         if (aniCurve != null) {
-            curvedValue = aniCurve.Evaluate(lerpTime);
+            _curvedValue = aniCurve.Evaluate(lerpTime);
         }
 
         //do part
-        outPutData = doPart(ref startVar, ref endVar, ref curvedValue);
+        outPutData = doPart(ref startVar, ref endVar, ref _curvedValue);
 
         if (lerpTime >= 1) {
             endLerp();

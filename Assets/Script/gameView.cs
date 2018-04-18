@@ -54,7 +54,7 @@ public class gameView : SingletonMonoBehavior<gameView> {
         Quaternion startVar2 = getObjectModelLookAtRotation(startVar, BoardManager.Instance.selectedChessman.gameObject.transform.position);
         startVar += (startVar2 * Vector3.forward);
         lerpMoveTest.startLerp(orlCamPos,startVar,curve, CameraMoveNeedTime);
-        quaternionTest.startLerp(orlCamRotation, startVar2, curve, CameraMoveNeedTime);
+        quaternionTest.startLerp(orlCamRotation, startVar2, curve, CameraMoveNeedTime,null, reductionCamera);
     }
 
     public void reductionCamera() {
@@ -64,7 +64,7 @@ public class gameView : SingletonMonoBehavior<gameView> {
         Quaternion nowCamRotation = cameraTs.rotation;
 
         lerpMoveTest.startLerp(nowCamPos, orlCamPos, curve, CameraMoveNeedTime);
-        quaternionTest.startLerp(nowCamRotation, orlCamRotation, curve, CameraMoveNeedTime);
+        quaternionTest.startLerp(nowCamRotation, orlCamRotation, curve, CameraMoveNeedTime,null,null);
     }
 
     public float CameraMoveNeedTime = 1f;
