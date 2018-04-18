@@ -33,4 +33,9 @@ public class CS : MonoBehaviour
     {
         Application.LoadLevel(7);
     }
+
+    public void playbnTwo()
+    {
+        Application.LoadLevel(9);
+    }
 }

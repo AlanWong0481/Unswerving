@@ -6,7 +6,7 @@ public class knight : Chessman
 {
     public override bool[,] PossibleMove()
     {
-        bool[,] r = new bool[5, 8];
+        bool[,] r = new bool[7, 10];
         List<Vector2> v2Array = new List<Vector2>();
 
         v2Array.Add(new Vector2((int)(transform.position.x - 0.5f), (int)(transform.position.z - 0.5f) + 1));
@@ -26,7 +26,7 @@ public class knight : Chessman
 
     public override bool[,] PossibleAttack()
     {
-        bool[,] z = new bool[5, 8];
+        bool[,] z = new bool[7, 10];
         List<Vector2> v2Array = new List<Vector2>();
 
         v2Array.Add(new Vector2((int)(transform.position.x - 0.5f), (int)(transform.position.z - 0.5f) + 1));
