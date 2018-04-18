@@ -10,15 +10,17 @@ public class gameView : SingletonMonoBehavior<gameView> {
 
     public GameObject skillAttackParticle;
 
+    public GameObject skillDefParticle;
+
      public chessmanLerpMove chessmanLerpMove;
 
     public void init() {
-
+        updateCostDisplay();
     }
 
     public void updateCostDisplay() {
         // Cost Display
-        print(gameModel.instance.cur_Cost);
+        canvasScript.instance.costText.text = gameModel.instance.cur_Cost.ToString();
     }
     public void updateActonDisplay() {
         canvasScript.instance.updateBarInformation();

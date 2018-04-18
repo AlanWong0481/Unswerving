@@ -63,9 +63,6 @@ public class BoardManager : MonoBehaviour {
         if (gameModel.instance.playerInMovingAni) {
             return;
         }
-
-        
-
         gameController.instance.thisRoundsPlayerTakeDamage = 0;
         gameController.instance.thisRoundsPlayerTakeSp = 0;
 
@@ -115,8 +112,6 @@ public class BoardManager : MonoBehaviour {
             //generalMove(selectedChessman, new Vector2(x, y));
             gameView.instance.chessmanLerpMove = new chessmanLerpMove(x,y);
             gameView.instance.chessmanLerpMove.startLerp(selectedChessman.gameObject.transform.position, generalMoveGetNewV3(selectedChessman, new Vector2(x, y)),0.5f);
-
-
         }
 
     } //限制角色移動於場地上的範圍和角色轉向
@@ -161,7 +156,6 @@ public class BoardManager : MonoBehaviour {
     } //檢查角色是否重疊
 
     public void OnPlayerFinishAttack() {
-
         if (selectedChessman.CurrentX == playerHitChessman.CurrentX + 1 && selectedChessman.CurrentY == playerHitChessman.CurrentY) {
             playerHitChessman.gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
         } else if (selectedChessman.CurrentX == playerHitChessman.CurrentX - 1 && selectedChessman.CurrentY == playerHitChessman.CurrentY) {
@@ -489,6 +483,9 @@ public class BoardManager : MonoBehaviour {
 
         foreach (var item in GameObject.FindGameObjectsWithTag("chess")) {
             Chessman chessmanItem = item.GetComponent<Chessman>();
+            if (!chessmanItem) {
+                continue;
+            }
             allChess.Add(chessmanItem);
             if (chessmanItem.group == groupEnum.white) {
                 whiteChess.Add(chessmanItem);

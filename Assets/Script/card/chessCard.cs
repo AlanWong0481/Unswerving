@@ -7,10 +7,11 @@ public class chessCard : Draggable, IBeginDragHandler, IDragHandler, IEndDragHan
     public int chessNumberIndexInDatabase;
     public override void OnEndDrag(PointerEventData eventData) {
         base.OnEndDrag(eventData);
-        if (!gameModel.instance.checkCostCanBeDeduct(cost)) {
+        if (!gameModel.instance.checkCostCanBeDeduct(gameModel.instance.selectedCards.cost)) {
             //out
             return;
         }
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100.0f)) {
@@ -20,7 +21,11 @@ public class chessCard : Draggable, IBeginDragHandler, IDragHandler, IEndDragHan
                 if (!isinSpawnZone((int)v3.x,(int)v3.z)) {
                     return;
                 }
+
+
+                gameController.instance.OnPlayerReadyToDropDownCards();
                 BoardManager.Instance.spawnChessman(chessNumberIndexInDatabase, (int)v3.x, (int)v3.z);
+                BoardManager.Instance.updateWhiteBlackChessmanData();
                 Destroy(gameObject);
             }
         }

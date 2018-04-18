@@ -35,7 +35,8 @@ public class animotionEvent : MonoBehaviour {
             case 2:
                 healthSkill();
                 break;
-            case 3:
+            case 7:
+                defUpSkill();
                 break;
         }
         //gameView.instance.reductionCamera();
@@ -59,6 +60,10 @@ public class animotionEvent : MonoBehaviour {
         defV2List.Add(new Vector2(v2.x - 1, v2.y + 1));
         defV2List.Add(new Vector2(v2.x, v2.y + 1));
         defV2List.Add(new Vector2(v2.x + 1, v2.y + 1));
+        if (gameView.instance.skillDefParticle) {
+            Instantiate(gameView.instance.skillDefParticle, BoardManager.Instance.selectedChessman.gameObject.transform.position, Quaternion.identity);
+
+        }
         foreach (var item in defV2List) {
             int x = (int)item.x;
             int y = (int)item.y;
@@ -150,13 +155,26 @@ public class animotionEvent : MonoBehaviour {
         print("dosadjlk");
         Chessman playerChessman = BoardManager.Instance.selectedChessman;
         //playerChessman.GetComponentInChildren<animotionEvent>().hit();
+        int takeDamage = 0;
+
         if (playerChessman.def > 0) {
-            playerChessman.def -= BoardManager.Instance.playerHitChessman.damage;
+            if (playerChessman.def- BoardManager.Instance.playerHitChessman.damage >= 0) {
+                playerChessman.def -= BoardManager.Instance.playerHitChessman.damage;
+                takeDamage = 0;
+            } else {
+                takeDamage = BoardManager.Instance.playerHitChessman.damage - playerChessman.def;
+                print(takeDamage);
+                int abs = Mathf.Abs( playerChessman.def -= BoardManager.Instance.playerHitChessman.damage);
+                playerChessman.def = 0;
+            }
         } else {
-            playerChessman.health -= BoardManager.Instance.playerHitChessman.damage;
+            takeDamage = BoardManager.Instance.playerHitChessman.damage;
         }
+
+        playerChessman.health -= takeDamage;
+        damageDisplay.instance.spawnDamageDisplay(takeDamage, 1, playerChessman.gameObject.transform);
+
         gameController.instance.thisRoundsPlayerTakeDamage = BoardManager.Instance.playerHitChessman.damage;
-        damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.playerHitChessman.damage,1, playerChessman.gameObject.transform);
 
 
         gameView.instance.updateHealthDisplay();

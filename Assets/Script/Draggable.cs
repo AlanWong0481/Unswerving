@@ -36,5 +36,6 @@ public class Draggable : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHa
     {
         GetComponent<RectTransform>().anchoredPosition = begainDragV2;
         gameModel.instance.inPlayerDragSomeCard = false;
+
     }
 }

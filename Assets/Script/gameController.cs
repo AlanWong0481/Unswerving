@@ -101,6 +101,7 @@ public class gameController : SingletonMonoBehavior<gameController> {
 
     public void gameover() {
         print("你已經輸了 原因：" + gameModel.instance.gameoverReason);
+        canvasScript.instance.DefeatGo.SetActive(true);
     }
 
     public void OnPlayerPickUpCards(Draggable cards) {
@@ -108,10 +109,7 @@ public class gameController : SingletonMonoBehavior<gameController> {
     }
 
     public void OnPlayerReadyToDropDownCards() {
-        if (!gameModel.instance.checkCostCanBeDeduct(gameModel.instance.selectedCards.cost)) {
-            //out
-            return;
-        }
+        
         //do
         OnPlayerDropDownCards();
     }

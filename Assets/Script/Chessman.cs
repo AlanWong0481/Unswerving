@@ -89,7 +89,6 @@ public class Chessman : MonoBehaviour
             Destroy(this);
         }
     }
-
     public void defBuffUp() {
 
     }

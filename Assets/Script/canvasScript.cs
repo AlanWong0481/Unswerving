@@ -16,6 +16,10 @@ public class canvasScript : SingletonMonoBehavior<canvasScript> {
     public Slider hpSlider;
     public Slider spSlider;
 
+    public Text costText;
+
+    public GameObject DefeatGo;
+
     public List<Image> playerImageList;
 
     public void updateBarInformation() {
@@ -25,6 +29,9 @@ public class canvasScript : SingletonMonoBehavior<canvasScript> {
                 continue;
             }
             item.gameObject.SetActive(false);
+        }
+        if (playerImageList[ BoardManager.Instance.selectedChessman.id ] == null) {
+            return;
         }
         playerImageList[ BoardManager.Instance.selectedChessman.id ].gameObject.SetActive(true);
 
