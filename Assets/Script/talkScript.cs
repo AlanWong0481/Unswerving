@@ -39,23 +39,23 @@ public class talkScript : MonoBehaviour
         float color = 0.6f;
         switch (leveltalkPlayScriptArray[ Datebase.instance.sceneLevel ].playScriptArray[ counter ].from) {
             case character.Narration:
-                charImage.color = new Color(1, 1, 1, color);
-                charImageTwo.color = new Color(1, 1, 1, color);
+                charImage.color = new Color(0, 0, 0, 0);
+                charImageTwo.color = new Color(0, 0, 0, 0);
                 if (charImageThree) {
-                    charImageThree.color = new Color(1, 1, 1, color);
+                    charImageThree.color = new Color(0, 0, 0, 0);
                 }
                 break;
             case character.warrior:
                 charImage.color = new Color(1, 1, 1, 1);
-                charImageTwo.color = new Color(color, color, color, color);
+                charImageTwo.color = new Color(0, 0, 0, 0);
                 break;
             case character.priest:
-                charImage.color = new Color(color, color, color, color);
+                charImage.color = new Color(0, 0, 0, 0);
                 charImageTwo.color = new Color(1, 1, 1, 1);
                 break;
             case character.knight:
-                charImage.color = new Color(color, color, color, color);
-                charImageTwo.color = new Color(color, color, color, color);
+                charImage.color = new Color(0, 0, 0, 0);
+                charImageTwo.color = new Color(0, 0, 0, 0);
                 charImageThree.color = new Color(1, 1, 1, 1);
                 break;
         }

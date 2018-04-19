@@ -374,8 +374,6 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(6, 5, 7);
                 spawnChessman(6, 5, 8);
 
-                spawnChessman(7,5,7);
-
                 Debug.Log("test one");
                 break;
 
