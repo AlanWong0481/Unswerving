@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 0000b7e90fa355b4aa6f1511299d91ff
+timeCreated: 1524152608
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: DFNMingXBold-B5
+  fontNames:
+  - DFNMingXBold-B5
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
