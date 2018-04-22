@@ -25,7 +25,7 @@ public class animotionEvent : MonoBehaviour {
         //damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.selectedChessman.damage, 0, enemy.gameObject.transform);
 
         BoardManager.Instance.OnPlayerFinishAttack();
-    }
+    } //玩家打人
 
     public void skill() {
         switch (BoardManager.Instance.selectedChessman.id) {
@@ -38,16 +38,56 @@ public class animotionEvent : MonoBehaviour {
             case 7:
                 defUpSkill();
                 break;
+            case 8:
+                arrowSkill();
+                break;
         }
         //gameView.instance.reductionCamera();
-    }
-
-        
+    } //技能，根據數據庫ID置入
+    
     public void healParticle() {
         if (gameView.instance.skillHealParticle) {
             Instantiate(gameView.instance.skillHealParticle, BoardManager.Instance.selectedChessman.gameObject.transform.position, Quaternion.identity);
         }
-    }
+    } //補血特效
+
+    public void arrowSkill()
+    {
+        Vector2 v2 = new Vector2(BoardManager.Instance.selectedChessman.CurrentX, BoardManager.Instance.selectedChessman.CurrentY);
+        List<Vector2> arrowV2List = new List<Vector2>();
+        arrowV2List.Add(new Vector2(v2.x - 1, v2.y - 1));
+        arrowV2List.Add(new Vector2(v2.x, v2.y - 1));
+        arrowV2List.Add(new Vector2(v2.x + 1, v2.y - 1));
+        arrowV2List.Add(new Vector2(v2.x - 1, v2.y));
+        arrowV2List.Add(new Vector2(v2.x + 1, v2.y));
+        arrowV2List.Add(new Vector2(v2.x - 1, v2.y + 1));
+        arrowV2List.Add(new Vector2(v2.x, v2.y + 1));
+        arrowV2List.Add(new Vector2(v2.x + 1, v2.y + 1));
+        if (gameView.instance.skillArrowParticle)
+        {
+            Instantiate(gameView.instance.skillArrowParticle, BoardManager.Instance.selectedChessman.gameObject.transform.position, Quaternion.identity);
+
+        }
+        foreach (var item in arrowV2List)
+        {
+            int x = (int)item.x;
+            int y = (int)item.y;
+            if (!BoardManager.Instance.isInBoardRange(x, y))
+            {
+                continue;
+            }
+            if (!BoardManager.Instance.Chessmans[x, y])
+            {
+                continue;
+            }
+            if (BoardManager.Instance.Chessmans[x, y].group == groupEnum.black)
+            {
+                //attackable
+                gameController.instance.DamageChassman(BoardManager.Instance.Chessmans[x, y], BoardManager.Instance.selectedChessman.skillDamage);
+
+            }
+        }
+    } //弓箭技能攻擊範圍
 
     public void defUpSkill() {
         Vector2 v2 = new Vector2(BoardManager.Instance.selectedChessman.CurrentX, BoardManager.Instance.selectedChessman.CurrentY);
@@ -60,11 +100,13 @@ public class animotionEvent : MonoBehaviour {
         defV2List.Add(new Vector2(v2.x - 1, v2.y + 1));
         defV2List.Add(new Vector2(v2.x, v2.y + 1));
         defV2List.Add(new Vector2(v2.x + 1, v2.y + 1));
-        if (gameView.instance.skillDefParticle) {
+        if (gameView.instance.skillDefParticle)
+        {
             Instantiate(gameView.instance.skillDefParticle, BoardManager.Instance.selectedChessman.gameObject.transform.position, Quaternion.identity);
 
         }
-        foreach (var item in defV2List) {
+        foreach (var item in defV2List)
+        {
             int x = (int)item.x;
             int y = (int)item.y;
             if (!BoardManager.Instance.isInBoardRange(x, y)) {
@@ -77,7 +119,7 @@ public class animotionEvent : MonoBehaviour {
                 BoardManager.Instance.Chessmans[ x, y ].def += 5;
             }
         }
-    }
+    } //防禦技能範圍
 
     public void attackSkill() {
         Vector2 v2 = new Vector2(BoardManager.Instance.selectedChessman.CurrentX, BoardManager.Instance.selectedChessman.CurrentY);
@@ -109,7 +151,7 @@ public class animotionEvent : MonoBehaviour {
                 
             }
         }
-    }
+    } //男主技能攻擊範圍
 
     public void healthSkill() {
         Vector2 v2 = new Vector2(BoardManager.Instance.selectedChessman.CurrentX, BoardManager.Instance.selectedChessman.CurrentY);
@@ -137,7 +179,7 @@ public class animotionEvent : MonoBehaviour {
                 gameController.instance.healthChassman(BoardManager.Instance.Chessmans[ x, y ]);
             }
         }
-    }
+    } //補血技能範圍
 
     public void hit() {
         Chessman thisChessman = transform.parent.parent.gameObject.GetComponent<Chessman>();
@@ -149,7 +191,7 @@ public class animotionEvent : MonoBehaviour {
             Chessman playerChessman = BoardManager.Instance.selectedChessman;
             playerChessman.gameObject.GetComponentInChildren<Animator>().SetTrigger("onGetHit");
         }
-    }
+    } //被打
 
     public void enemyAttack() {
         print("dosadjlk");
@@ -186,6 +228,6 @@ public class animotionEvent : MonoBehaviour {
         playerChessman.healthChecker();
 
         BoardManager.Instance.OnEnemyFinishAttack();
-    }
+    } //敵人攻擊
 
 }
