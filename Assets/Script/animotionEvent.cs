@@ -55,14 +55,14 @@ public class animotionEvent : MonoBehaviour {
     {
         Vector2 v2 = new Vector2(BoardManager.Instance.selectedChessman.CurrentX, BoardManager.Instance.selectedChessman.CurrentY);
         List<Vector2> arrowV2List = new List<Vector2>();
-        arrowV2List.Add(new Vector2(v2.x - 1, v2.y - 1));
-        arrowV2List.Add(new Vector2(v2.x, v2.y - 1));
-        arrowV2List.Add(new Vector2(v2.x + 1, v2.y - 1));
-        arrowV2List.Add(new Vector2(v2.x - 1, v2.y));
-        arrowV2List.Add(new Vector2(v2.x + 1, v2.y));
-        arrowV2List.Add(new Vector2(v2.x - 1, v2.y + 1));
         arrowV2List.Add(new Vector2(v2.x, v2.y + 1));
-        arrowV2List.Add(new Vector2(v2.x + 1, v2.y + 1));
+        arrowV2List.Add(new Vector2(v2.x, v2.y + 2));
+        arrowV2List.Add(new Vector2(v2.x, v2.y + 3));
+        arrowV2List.Add(new Vector2(v2.x, v2.y + 4));
+        arrowV2List.Add(new Vector2(v2.x, v2.y + 5));
+        arrowV2List.Add(new Vector2(v2.x, v2.y + 6));
+        arrowV2List.Add(new Vector2(v2.x, v2.y + 7));
+
         if (gameView.instance.skillArrowParticle)
         {
             Instantiate(gameView.instance.skillArrowParticle, BoardManager.Instance.selectedChessman.gameObject.transform.position, Quaternion.identity);

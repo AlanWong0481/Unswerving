@@ -9,6 +9,7 @@ public class talkScript : MonoBehaviour
     public Image charImage; //人物立繪
     public Image charImageTwo;
     public Image charImageThree;
+    public Image charImageFour;
     public Image talkImage; //對話框背景
 
     int counter = -1;
@@ -41,22 +42,33 @@ public class talkScript : MonoBehaviour
             case character.Narration:
                 charImage.color = new Color(0, 0, 0, 0);
                 charImageTwo.color = new Color(0, 0, 0, 0);
-                if (charImageThree) {
-                    charImageThree.color = new Color(0, 0, 0, 0);
-                }
+                charImageThree.color = new Color(0, 0, 0, 0);
+                charImageFour.color = new Color(0, 0, 0, 0);
+
                 break;
             case character.warrior:
                 charImage.color = new Color(1, 1, 1, 1);
                 charImageTwo.color = new Color(0, 0, 0, 0);
+                charImageThree.color = new Color(0, 0, 0, 0);
+                charImageFour.color = new Color(0, 0, 0, 0);
                 break;
             case character.priest:
                 charImage.color = new Color(0, 0, 0, 0);
                 charImageTwo.color = new Color(1, 1, 1, 1);
+                charImageThree.color = new Color(0, 0, 0, 0);
+                charImageFour.color = new Color(0, 0, 0, 0);
                 break;
             case character.knight:
                 charImage.color = new Color(0, 0, 0, 0);
                 charImageTwo.color = new Color(0, 0, 0, 0);
                 charImageThree.color = new Color(1, 1, 1, 1);
+                charImageFour.color = new Color(0, 0, 0, 0);
+                break;
+            case character.archer:
+                charImage.color = new Color(0, 0, 0, 0);
+                charImageTwo.color = new Color(0, 0, 0, 0);
+                charImageThree.color = new Color(0, 0, 0, 0);
+                charImageFour.color = new Color(1, 1, 1, 1);
                 break;
         }
 
@@ -76,6 +88,7 @@ public class talkScript : MonoBehaviour
         warrior,
         priest,
         knight,
+        archer,
     }
 
     [System.Serializable]
