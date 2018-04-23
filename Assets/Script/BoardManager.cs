@@ -373,7 +373,6 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(6, 5, 5);
                 spawnChessman(6, 5, 7);
                 spawnChessman(6, 5, 8);
-
                 Debug.Log("test one");
                 break;
 
@@ -409,10 +408,9 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(5, 3, 6);
                 spawnChessman(5, 3, 7);
                 spawnChessman(5, 3, 8);
-                spawnChessman(5, 4, 0);
                 spawnChessman(5, 4, 4);
-                spawnChessman(5, 4, 1);
-                spawnChessman(5, 4, 2);
+                spawnChessman(5, 5, 0);
+                spawnChessman(5, 5, 1);
                 spawnChessman(5, 5, 2);
                 spawnChessman(5, 5, 4);
                 spawnChessman(5, 6, 2);
@@ -425,7 +423,6 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(1, 0, 7);
                 spawnChessman(1, 1, 2);
                 spawnChessman(1, 1, 8);
-                spawnChessman(1, 2, 2);
                 spawnChessman(1, 3, 3);
                 spawnChessman(1, 3, 5);
                 spawnChessman(1, 3, 7);
@@ -436,8 +433,6 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(3, 6, 2);
 
                 spawnChessman(4, 0, 5);
-                spawnChessman(4, 1, 1);
-                spawnChessman(4, 4, 1);
                 spawnChessman(4, 4, 5);
                 spawnChessman(4, 5, 7);
 
@@ -459,8 +454,6 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(5, 6, 1);
 
                 spawnChessman(6, 1, 5);
-                spawnChessman(6, 2, 1);
-                spawnChessman(6, 5, 1);
                 spawnChessman(6, 5, 5);
                 spawnChessman(6, 6, 7);
                 Debug.Log("test three");
