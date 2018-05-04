@@ -9,6 +9,9 @@ public class stage : MonoBehaviour
     [SerializeField]
     private GameObject stagePanel;
 
+    [SerializeField]
+    private GameObject otherStagePanel;
+
     private void Awake()
     {
         MakeInstance();
@@ -31,6 +34,7 @@ public class stage : MonoBehaviour
     {
         Time.timeScale = 0f;
         stagePanel.SetActive(true);
+        otherStagePanel.SetActive(false);
     }
 
     public void closeStageGame()

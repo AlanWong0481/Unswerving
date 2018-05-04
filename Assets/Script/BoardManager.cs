@@ -36,8 +36,10 @@ public class BoardManager : MonoBehaviour {
         Instance = this;
         spawnAllChessmans();
         updateWhiteBlackChessmanData();
-        selectedChessman = whiteChess[ 0 ];
-        gameView.instance.showupPlayerSelectWhatChessman();
+        if (whiteChess.Count > 0) {
+            selectedChessman = whiteChess[ 0 ];
+            gameView.instance.showupPlayerSelectWhatChessman();
+        }
 
     }
 
