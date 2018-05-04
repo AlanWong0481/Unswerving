@@ -187,7 +187,11 @@ public class BoardManager : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0)) {
             print(new Vector2(selectionX, selectionY));
-            if (selectionX >= 0 && selectionY >= 0) {
+            if (selectionX < 6 && selectionY < 9) {
+                return;
+            }
+
+            if (selectionX >= 0 && selectionY >= 0 ) {
                 if (!Chessmans[ selectionX, selectionY ]) {
                     return;
                 }

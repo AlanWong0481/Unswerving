@@ -23,6 +23,7 @@ public class CS : MonoBehaviour
     public void loadbn()
     {
         SceneManager.LoadScene(4);
+        Datebase.instance.sceneLevel = 0;
     }
 
     public void loadbnTwo()
@@ -33,6 +34,7 @@ public class CS : MonoBehaviour
     public void playbn()
     {
         SceneManager.LoadScene(7);
+        Datebase.instance.sceneLevel = 1;
     }
 
     public void playbnTwo()
