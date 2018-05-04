@@ -187,7 +187,7 @@ public class BoardManager : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0)) {
             print(new Vector2(selectionX, selectionY));
-            if (selectionX < 6 && selectionY < 9) {
+            if (selectionX > 6 || selectionY > 9) {
                 return;
             }
 
