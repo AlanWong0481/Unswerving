@@ -458,6 +458,10 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(6, 6, 7);
                 Debug.Log("test three");
                 break;
+
+            case 3:
+                spawnChessman(9, 3, 6);
+                break;
         }
     }
 
