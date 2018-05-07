@@ -15,6 +15,9 @@ public class animotionEvent : MonoBehaviour {
         if (enemy.health <= 0) {
             BoardManager.Instance.inAttack = false;
         }
+
+
+
         /*
          if (gameView.instance.hitEnemyParticle) {
             Instantiate(gameView.instance.hitEnemyParticle, target.gameObject.transform.position, Quaternion.identity);
@@ -119,6 +122,8 @@ public class animotionEvent : MonoBehaviour {
                 BoardManager.Instance.Chessmans[ x, y ].def += 5;
             }
         }
+
+
     } //防禦技能範圍
 
     public void attackSkill() {
@@ -226,6 +231,8 @@ public class animotionEvent : MonoBehaviour {
         }
         
         playerChessman.healthChecker();
+
+        audioEffectScript.instance.attackEnemy();
 
         BoardManager.Instance.OnEnemyFinishAttack();
     } //敵人攻擊
