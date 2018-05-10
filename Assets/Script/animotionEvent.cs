@@ -30,6 +30,44 @@ public class animotionEvent : MonoBehaviour {
         BoardManager.Instance.OnPlayerFinishAttack();
     } //玩家打人
 
+    public void dragonSkill() {
+
+        foreach (var item in BoardManager.Instance.whiteChess) {
+            if (!item) {
+                continue;
+            }
+            Vector2 v2 = BoardManager.Instance.getChessmanV2(item);
+            bool hideInPillar = false;
+            foreach (var pillarItem in BoardManager.Instance.pillarChessV2) {
+                if (!(v2.x != pillarItem.x || v2.y+1 != pillarItem.y)) {
+                    hideInPillar = true;
+                    break;
+                }
+            }
+            if (!hideInPillar && item.health > 0) {
+                bool isSelectedChessman = false;
+                if (BoardManager.Instance.selectedChessman == item) {
+                    isSelectedChessman = true;
+                }
+                item.health -= BoardManager.Instance.dragon.skillDamage;
+                damageDisplay.instance.spawnDamageDisplay(BoardManager.Instance.dragon.skillDamage, 1, item.gameObject.transform);
+
+                item.healthChecker();
+                if (isSelectedChessman) {
+                    gameController.instance.thisRoundsPlayerTakeDamage = BoardManager.Instance.dragon.skillDamage;
+                    if (item.health <= 0 ) {
+                        gameController.instance.OnPlayerSelectedChessmanDied();
+                    }
+                }
+
+            }
+        }
+    }
+
+    public void dragonSkillFinish() {
+        BoardManager.Instance.inAttack = false;
+    }
+
     public void skill() {
         switch (BoardManager.Instance.selectedChessman.id) {
             case 0:
@@ -222,7 +260,6 @@ public class animotionEvent : MonoBehaviour {
         damageDisplay.instance.spawnDamageDisplay(takeDamage, 1, playerChessman.gameObject.transform);
 
         gameController.instance.thisRoundsPlayerTakeDamage = BoardManager.Instance.playerHitChessman.damage;
-
 
         gameView.instance.updateHealthDisplay();
         if (playerChessman.health <= 0) {

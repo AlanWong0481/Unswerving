@@ -275,7 +275,15 @@ ModelImporter:
       curves: []
       events:
       - time: 0.49868762
-        functionName: skill
+        functionName: dragonSkill
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 626d962146505764bb8c64282825d8d2,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: dragonSkillFinish
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 626d962146505764bb8c64282825d8d2,
           type: 3}
@@ -302,8 +310,6 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

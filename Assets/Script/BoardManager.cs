@@ -15,7 +15,9 @@ public class BoardManager : MonoBehaviour {
     public List<Chessman> allChess;
     public List<Chessman> whiteChess;
     public List<Chessman> blackChess;
+    public List<Vector2> pillarChessV2;
 
+    public dragon dragon;
 
     private const float TILE_SIZE = 1.0f;
     private const float TILE_OFFSET = 0.5f;
@@ -40,7 +42,6 @@ public class BoardManager : MonoBehaviour {
             selectedChessman = whiteChess[ 0 ];
             gameView.instance.showupPlayerSelectWhatChessman();
         }
-
     }
 
     private void Update() {
@@ -114,9 +115,25 @@ public class BoardManager : MonoBehaviour {
             //generalMove(selectedChessman, new Vector2(x, y));
             gameView.instance.chessmanLerpMove = new chessmanLerpMove(x,y);
             gameView.instance.chessmanLerpMove.startLerp(selectedChessman.gameObject.transform.position, generalMoveGetNewV3(selectedChessman, new Vector2(x, y)),0.5f);
+
+            if (dragon) {
+                dragon.doCountDown();
+            }
+
         }
 
     } //限制角色移動於場地上的範圍和角色轉向
+
+    public Vector2 getChessmanV2(Chessman chessman) {
+        for (int x = 0; x < 7; x++) {
+            for (int y = 0; y < 10; y++) {
+                if (Chessmans[x,y] == chessman) {
+                    return new Vector2(x,y);
+                }
+            }
+        }
+        return new Vector2(-1,-1);
+    }
 
     public bool isInBoardRange(int x,int y) {
         if (x < 7 && x >= 0 && y < 10 && y >= 0) {
@@ -496,22 +513,22 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(5, 0, 0);
                 spawnChessman(5, 0, 1);
                 spawnChessman(5, 0, 2);
-                spawnChessman(5, 0, 3);
+                //spawnChessman(5, 0, 3);
                 spawnChessman(5, 1, 3);
-                spawnChessman(5, 1, 5);
+                //spawnChessman(5, 1, 5);
                 spawnChessman(5, 2, 3);
                 spawnChessman(5, 2, 5);
-                spawnChessman(5, 2, 7);
+                //spawnChessman(5, 2, 7);
                 spawnChessman(5, 2, 8);
                 spawnChessman(5, 2, 9);
                 spawnChessman(5, 3, 3);
                 spawnChessman(5, 3, 5);
                 spawnChessman(5, 4, 3);
-                spawnChessman(5, 4, 5);
-                spawnChessman(5, 4, 7);
+                //spawnChessman(5, 4, 5);
+                //spawnChessman(5, 4, 7);
                 spawnChessman(5, 4, 8);
                 spawnChessman(5, 4, 9);
-                spawnChessman(5, 5, 3);
+                //spawnChessman(5, 5, 3);
                 spawnChessman(5, 5, 5);
                 spawnChessman(5, 5, 7);
                 spawnChessman(5, 6, 5);
@@ -519,6 +536,16 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(6, 1, 8);
 
                 spawnChessman(9, 3, 8);
+
+                
+                spawnChessman(10, 0, 3);
+                spawnChessman(10, 1, 5);
+                spawnChessman(10, 2, 7);
+                spawnChessman(10, 4, 5);
+                spawnChessman(10, 4, 7);
+                spawnChessman(10, 5, 3);
+                
+
                 Debug.Log("test four");
                 break;
         }
@@ -547,7 +574,19 @@ public class BoardManager : MonoBehaviour {
             if (chessmanItem.group == groupEnum.white) {
                 whiteChess.Add(chessmanItem);
             } else if (chessmanItem.group == groupEnum.black) {
+               
                 blackChess.Add(chessmanItem);
+                dragon dragonItem = item.GetComponent<dragon>();
+                if (!dragonItem) {
+                    continue;
+                }
+                dragon = dragonItem;
+            } else {
+                pillar pillarItem = item.GetComponent<pillar>();
+                if (!pillarItem) {
+                    continue;
+                }
+                pillarChessV2.Add(getChessmanV2( pillarItem ) );
             }
         }
     }
