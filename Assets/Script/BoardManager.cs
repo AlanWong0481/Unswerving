@@ -133,7 +133,7 @@ public class BoardManager : MonoBehaviour {
         playerHitChessman = OverlappingChessman;
         selectedChessman.GetComponentInChildren<Animator>().SetTrigger("onAttack"); //SetTrigger在Animator是指提取Animator當中的變數。
 
-        switch (BoardManager.Instance.selectedChessman.id) {
+        switch (selectedChessman.id) {
             case 0:
                 audioEffectScript.instance.attackBoy();
                 break;
