@@ -497,54 +497,32 @@ public class BoardManager : MonoBehaviour {
                 break;
 
             case 3:
-                spawnChessman(0, 3, 1);
+                spawnChessman(0, 3, 0);
 
-                spawnChessman(1, 0, 5);
-                spawnChessman(1, 6, 3);
-                spawnChessman(1, 6, 7);
+                spawnChessman(1, 0, 6);
+                spawnChessman(1, 6, 6);
 
-                spawnChessman(3, 1, 7);
-                spawnChessman(3, 4, 4);
-                spawnChessman(3, 6, 0);
-                spawnChessman(3, 6, 9);
+                spawnChessman(3, 0, 1);
+                spawnChessman(3, 6, 1);
 
-                spawnChessman(4, 0, 8);
-
-                spawnChessman(5, 0, 0);
-                spawnChessman(5, 0, 1);
-                spawnChessman(5, 0, 2);
-                //spawnChessman(5, 0, 3);
-                spawnChessman(5, 1, 3);
-                //spawnChessman(5, 1, 5);
-                spawnChessman(5, 2, 3);
+                spawnChessman(5, 1, 6);
+                spawnChessman(5, 1, 7);
+                spawnChessman(5, 1, 8);
+                spawnChessman(5, 1, 9);
                 spawnChessman(5, 2, 5);
-                //spawnChessman(5, 2, 7);
-                spawnChessman(5, 2, 8);
-                spawnChessman(5, 2, 9);
-                spawnChessman(5, 3, 3);
-                spawnChessman(5, 3, 5);
-                spawnChessman(5, 4, 3);
-                //spawnChessman(5, 4, 5);
-                //spawnChessman(5, 4, 7);
-                spawnChessman(5, 4, 8);
-                spawnChessman(5, 4, 9);
-                //spawnChessman(5, 5, 3);
-                spawnChessman(5, 5, 5);
+                spawnChessman(5, 4, 5);
+                spawnChessman(5, 5, 6);
                 spawnChessman(5, 5, 7);
-                spawnChessman(5, 6, 5);
+                spawnChessman(5, 5, 8);
+                spawnChessman(5, 5, 9);
 
-                spawnChessman(6, 1, 8);
+                spawnChessman(9, 3, 7);
 
-                spawnChessman(9, 3, 8);
-
-                
                 spawnChessman(10, 0, 3);
                 spawnChessman(10, 1, 5);
-                spawnChessman(10, 2, 7);
-                spawnChessman(10, 4, 5);
-                spawnChessman(10, 4, 7);
-                spawnChessman(10, 5, 3);
-                
+                spawnChessman(10, 3, 3);
+                spawnChessman(10, 5, 5);
+                spawnChessman(10, 6, 3);
 
                 Debug.Log("test four");
                 break;

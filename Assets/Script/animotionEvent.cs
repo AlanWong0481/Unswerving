@@ -157,7 +157,7 @@ public class animotionEvent : MonoBehaviour {
                 continue;
             }
             if (BoardManager.Instance.Chessmans[ x, y ].group == groupEnum.white) {
-                BoardManager.Instance.Chessmans[ x, y ].def += 5;
+                BoardManager.Instance.Chessmans[ x, y ].def += 10;
             }
         }
 

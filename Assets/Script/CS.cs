@@ -41,4 +41,9 @@ public class CS : MonoBehaviour
     {
         SceneManager.LoadScene(9);
     }
+
+    public void playbnThree()
+    {
+        SceneManager.LoadScene(11);
+    }
 }
