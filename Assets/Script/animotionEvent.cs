@@ -31,11 +31,9 @@ public class animotionEvent : MonoBehaviour {
     } //玩家打人
 
     public void dragonSkill() {
-
         if (gameView.instance.skillDragonFire)
         {
             Instantiate(gameView.instance.skillDragonFire, BoardManager.Instance.selectedChessman.gameObject.transform.position, Quaternion.identity);
-
         }
 
         foreach (var item in BoardManager.Instance.whiteChess) {

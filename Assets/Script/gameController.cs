@@ -5,9 +5,7 @@ using UnityEngine;
 public class gameController : SingletonMonoBehavior<gameController> {
     delegate void roundDG();
     roundDG roundDelegate;
-
     public GameObject Poison;
-
     public GameObject winBox;
 
     public int thisRoundsPlayerTakeDamage;
@@ -26,7 +24,6 @@ public class gameController : SingletonMonoBehavior<gameController> {
         if (gameView.instance.chessmanLerpMove != null && gameView.instance.chessmanLerpMove.isLerping) {
             BoardManager.Instance.selectedChessman.gameObject.transform.position = gameView.instance.chessmanLerpMove.update();
         }
-
     }
 
     public void testFunction() {
