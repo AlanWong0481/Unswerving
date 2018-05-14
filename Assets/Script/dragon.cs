@@ -8,6 +8,7 @@ public class dragon : Chessman {
 
     public void doCountDown() {
         curCountDown++;
+        countdownScript.instance.updateCountDownImage();
         countCountDown();
     }
 

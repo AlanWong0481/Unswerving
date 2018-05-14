@@ -559,6 +559,7 @@ public class BoardManager : MonoBehaviour {
                     continue;
                 }
                 dragon = dragonItem;
+                countdownScript.instance.updateCountDownImage();
             } else {
                 pillar pillarItem = item.GetComponent<pillar>();
                 if (!pillarItem) {

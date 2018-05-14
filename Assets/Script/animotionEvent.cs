@@ -71,6 +71,7 @@ public class animotionEvent : MonoBehaviour {
 
     public void dragonSkillFinish() {
         BoardManager.Instance.inAttack = false;
+        countdownScript.instance.updateCountDownImage();
     }
 
     public void skill() {
