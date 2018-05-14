@@ -14,6 +14,8 @@ public class gameView : SingletonMonoBehavior<gameView> {
 
     public GameObject skillArrowParticle;
 
+    public GameObject skillDragonFire;
+
      public chessmanLerpMove chessmanLerpMove;
 
     public void init() {

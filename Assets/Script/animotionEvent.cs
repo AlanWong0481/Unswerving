@@ -32,6 +32,12 @@ public class animotionEvent : MonoBehaviour {
 
     public void dragonSkill() {
 
+        if (gameView.instance.skillDragonFire)
+        {
+            Instantiate(gameView.instance.skillDragonFire, BoardManager.Instance.selectedChessman.gameObject.transform.position, Quaternion.identity);
+
+        }
+
         foreach (var item in BoardManager.Instance.whiteChess) {
             if (!item) {
                 continue;
@@ -59,7 +65,6 @@ public class animotionEvent : MonoBehaviour {
                         gameController.instance.OnPlayerSelectedChessmanDied();
                     }
                 }
-
             }
         }
     }
