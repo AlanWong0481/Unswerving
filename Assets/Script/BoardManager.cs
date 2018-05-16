@@ -524,7 +524,6 @@ public class BoardManager : MonoBehaviour {
                 spawnChessman(10, 3, 3);
                 spawnChessman(10, 5, 5);
                 spawnChessman(10, 6, 3);
-
                 Debug.Log("test four");
                 break;
         }

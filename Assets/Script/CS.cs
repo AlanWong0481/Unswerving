@@ -40,10 +40,12 @@ public class CS : MonoBehaviour
     public void playbnTwo()
     {
         SceneManager.LoadScene(9);
+        Datebase.instance.sceneLevel = 2;
     }
 
     public void playbnThree()
     {
         SceneManager.LoadScene(11);
+        Datebase.instance.sceneLevel = 3;
     }
 }
