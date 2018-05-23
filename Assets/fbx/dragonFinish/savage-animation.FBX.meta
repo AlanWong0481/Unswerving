@@ -1,0 +1,355 @@
+fileFormatVersion: 2
+guid: 0b7e3b476c427454ab8a0698b70a1f5d
+timeCreated: 1527071963
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Bone127
+    100002: Bone128
+    100004: Bone129
+    100006: Bone130
+    100008: Bone131
+    100010: Bone137
+    100012: Bone138
+    100014: Bone139
+    100016: Bone140
+    100018: Bone141
+    100020: Bone143
+    100022: Bone144
+    100024: Bone145
+    100026: Bone147
+    100028: Bone148
+    100030: Bone149
+    100032: Bone151
+    100034: Bone152
+    100036: Bone153
+    100038: Bone155
+    100040: Bone156
+    100042: Bone157
+    100044: Bone177
+    100046: Bone179
+    100048: Bone180
+    100050: Bone180(mirrored)
+    100052: Bone180END
+    100054: Bone181
+    100056: Bone181(mirrored)
+    100058: Bone182
+    100060: Bone182(mirrored)
+    100062: Bone183END
+    100064: Bone184
+    100066: Bone184(mirrored)
+    100068: Bone185END
+    100070: Bone186
+    100072: Bone186(mirrored)
+    100074: Circle001
+    100076: Circle002
+    100078: Circle003
+    100080: Circle004
+    100082: Circle005
+    100084: Circle006
+    100086: Circle007
+    100088: Circle008
+    100090: Circle009
+    100092: Circle010
+    100094: Circle011
+    100096: Cylinder001
+    100098: Dummy001
+    100100: IK Chain001
+    100102: IK Chain002
+    100104: IK Chain005
+    100106: IK Chain006
+    100108: IK Chain007
+    100110: Line001
+    100112: Line002
+    100114: //RootNode
+    400000: Bone127
+    400002: Bone128
+    400004: Bone129
+    400006: Bone130
+    400008: Bone131
+    400010: Bone137
+    400012: Bone138
+    400014: Bone139
+    400016: Bone140
+    400018: Bone141
+    400020: Bone143
+    400022: Bone144
+    400024: Bone145
+    400026: Bone147
+    400028: Bone148
+    400030: Bone149
+    400032: Bone151
+    400034: Bone152
+    400036: Bone153
+    400038: Bone155
+    400040: Bone156
+    400042: Bone157
+    400044: Bone177
+    400046: Bone179
+    400048: Bone180
+    400050: Bone180(mirrored)
+    400052: Bone180END
+    400054: Bone181
+    400056: Bone181(mirrored)
+    400058: Bone182
+    400060: Bone182(mirrored)
+    400062: Bone183END
+    400064: Bone184
+    400066: Bone184(mirrored)
+    400068: Bone185END
+    400070: Bone186
+    400072: Bone186(mirrored)
+    400074: Circle001
+    400076: Circle002
+    400078: Circle003
+    400080: Circle004
+    400082: Circle005
+    400084: Circle006
+    400086: Circle007
+    400088: Circle008
+    400090: Circle009
+    400092: Circle010
+    400094: Circle011
+    400096: Cylinder001
+    400098: Dummy001
+    400100: IK Chain001
+    400102: IK Chain002
+    400104: IK Chain005
+    400106: IK Chain006
+    400108: IK Chain007
+    400110: Line001
+    400112: Line002
+    400114: //RootNode
+    2100000: 'Material #1'
+    2100002: 02 - Default
+    4300000: Cylinder001
+    7400000: standBy
+    7400002: attack
+    7400004: skill
+    7400006: dead
+    9500000: //RootNode
+    13700000: Cylinder001
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: standBy
+      takeName: Take 001
+      firstFrame: 25
+      lastFrame: 85
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: attack
+      takeName: Take 001
+      firstFrame: 107
+      lastFrame: 170
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.17207794
+        functionName: hit
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 626d962146505764bb8c64282825d8d2,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.42532468
+        functionName: NewEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: skill
+      takeName: Take 001
+      firstFrame: 170
+      lastFrame: 294
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.3279221
+        functionName: dragonSkill
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 626d962146505764bb8c64282825d8d2,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7478355
+        functionName: dragonSkillFinish
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 626d962146505764bb8c64282825d8d2,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: dead
+      takeName: Take 001
+      firstFrame: 294
+      lastFrame: 360
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
